@@ -135,7 +135,7 @@ body, a, button {
   
   width: 24px;
   height: 24px;
-  border: 1.5px solid var(--accent); /* L'épaisseur et la couleur du cercle */
+  border: 1.5px solid var(--text); /* L'épaisseur et la couleur du cercle */
   border-radius: 50%;
   
   pointer-events: none; /* CRUCIAL : permet de cliquer "à travers" le cercle */

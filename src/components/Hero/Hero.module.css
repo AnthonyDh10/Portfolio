@@ -22,20 +22,54 @@
 
 .title {
   color: var(--text);
-  font-size: clamp(48px, 8vw, 80px); /* Texte fluide qui s'adapte aux mobiles */
+  font-size: clamp(48px, 8vw, 80px);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: 4px;
   margin-bottom: 16px;
+  
+  /* --- Ombres Très Visibles --- */
+  text-shadow: 
+    /* Cœur de l'ombre : Noir absolu (1) */
+    calc((50vw - var(--mouse-x)) * 0.04) 
+    calc((50vh - var(--mouse-y)) * 0.04) 
+    5px rgba(0, 0, 0, calc(1 * var(--shadow-intensity, 0))),
+    
+    /* Ombre de transition : Noir très fort (0.9), un peu plus floue */
+    calc((50vw - var(--mouse-x)) * 0.04) 
+    calc((50vh - var(--mouse-y)) * 0.04) 
+    15px rgba(0, 0, 0, calc(0.9 * var(--shadow-intensity, 0))),
+    
+    /* Résidu lumineux : Très opaque (0.8) et flou élargi à 40px */
+    calc((50vw - var(--mouse-x)) * 0.06) 
+    calc((50vh - var(--mouse-y)) * 0.06) 
+    40px rgba(16, 185, 129, calc(0.8 * var(--shadow-intensity, 0)));
+    
+  transition: text-shadow 0.1s ease-out;
 }
 
 .subtitle {
-  color: var(--primary); /* Ton vert forêt */
+  color: var(--primary);
   font-size: clamp(24px, 4vw, 40px);
   font-weight: 600;
   margin-bottom: 32px;
   letter-spacing: 4px;
-
+  
+  /* --- Ombres Très Visibles --- */
+  text-shadow: 
+    calc((50vw - var(--mouse-x)) * 0.02) 
+    calc((50vh - var(--mouse-y)) * 0.02) 
+    4px rgba(0, 0, 0, calc(0.9 * var(--shadow-intensity, 0))),
+    
+    calc((50vw - var(--mouse-x)) * 0.02) 
+    calc((50vh - var(--mouse-y)) * 0.02) 
+    10px rgba(0, 0, 0, calc(0.7 * var(--shadow-intensity, 0))),
+    
+    calc((50vw - var(--mouse-x)) * 0.03) 
+    calc((50vh - var(--mouse-y)) * 0.03) 
+    25px rgba(16, 185, 129, calc(0.6 * var(--shadow-intensity, 0)));
+    
+  transition: text-shadow 0.1s ease-out;
 }
 
 .description {
