@@ -1,127 +1,158 @@
 :root {
-  /* Colors */
-  --bg: #F8FAFC;
-  --surface: #FFFFFF;
+  /* Couleurs - Mode Sombre */
+  --bg: #020617; /* Bleu nuit presque noir */
+  --surface: #0F172A; /* Un peu plus clair pour les éléments/cartes */
 
-  --text: #0F172A;
-  --text-secondary: #64748B;
+  --text: #F8FAFC; /* Blanc cassé pour la lisibilité */
+  --text-secondary: #94A3B8; /* Gris bleuté */
 
-  --primary: #064E3B;     
-  --accent: #10B981;      
-  --border: #E2E8F0;
-  --shadow:
-    0 4px 12px rgba(15,23,42,.06);
+  --primary: #10B981; /* Vert émeraude lumineux */
+  --accent: #34D399; /* Vert plus clair pour les accents */
+  --border: #1E293B;
+  
+  /* Lueur subtile pour les ombres en mode sombre */
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
-  /* Typography */
-  --font:
-    Inter,
-    system-ui,
-    sans-serif;
+  /* Variables dynamiques pour le curseur (mises à jour par JS) */
+  --mouse-x: 50%;
+  --mouse-y: 50%;
 
-  --heading:
-    Inter,
-    system-ui,
-    sans-serif;
+  /* Typographie (inchangée) */
+  --font: Inter, system-ui, sans-serif;
+  --heading: Inter, system-ui, sans-serif;
 
   font-family: var(--font);
-
   font-size: 18px;
   line-height: 1.6;
 
   color: var(--text-secondary);
   background: var(--bg);
-
   text-rendering: optimizeLegibility;
-
   -webkit-font-smoothing: antialiased;
 }
 
 @media (max-width:1024px){
   :root{
-    font-size:16px;
+    font-size: 16px;
   }
 }
 
-body{
-  margin:0;
-  background:var(--bg);
+body {
+  margin: 0;
+  background: var(--bg);
+  position: relative;
+  min-height: 100vh;
 }
 
-#root{
-  width:min(1120px,100%);
-  margin:auto;
-
-  min-height:100svh;
-
-  padding-inline:32px;
-
-  box-sizing:border-box;
+/* --- L'EFFET D'ILLUMINATION DU CURSEUR --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Empêche le halo de bloquer les clics */
+  z-index: 50;
+  /* Un dégradé radial centré sur les coordonnées de la souris */
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(16, 185, 129, 0.08), /* La couleur de la lumière (basée sur --primary) */
+    transparent 40%
+  );
 }
 
-h1,h2,h3{
-  font-family:var(--heading);
-
-  color:var(--text);
-
-  font-weight:600;
-
-  margin:0;
+#root {
+  width: min(1120px, 100%);
+  margin: auto;
+  min-height: 100svh;
+  padding-inline: 32px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1; /* S'assure que le contenu est au-dessus du fond, mais sous la lumière */
 }
 
-h1{
-  font-size:56px;
-
-  line-height:1.05;
-
-  letter-spacing:-2px;
-
-  margin-bottom:24px;
+h1, h2, h3 {
+  font-family: var(--heading);
+  color: var(--text);
+  font-weight: 600;
+  margin: 0;
 }
 
-h2{
-  font-size:28px;
-
-  margin-bottom:12px;
+h1 {
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
 }
 
-p{
-  margin:0;
+h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
 
-  color:var(--text-secondary);
+p {
+  margin: 0;
+  color: var(--text-secondary);
 }
 
 @media (max-width:1024px){
-
-  h1{
-    font-size:38px;
-  }
-
-  h2{
-    font-size:24px;
-  }
-
+  h1 { font-size: 38px; }
+  h2 { font-size: 24px; }
 }
 
-a{
-  color:var(--primary);
-
-  text-decoration:none;
-
-  transition:.2s;
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: .2s;
 }
 
-a:hover{
-  opacity:.8;
+a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.4); /* Fait briller les liens au survol */
 }
 
-code{
-  background:#EEF2FF;
+code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: .9rem;
+  color: var(--accent);
+}
 
-  padding:4px 8px;
+/* 1. Masquer le curseur par défaut sur toute la page et les liens */
+body, a, button {
+  cursor: none;
+}
 
-  border-radius:6px;
+/* 2. Style du cercle fin */
+#custom-cursor {
+  position: fixed;
+  /* On réutilise les variables du script précédent ! */
+  top: var(--mouse-y, -100px); 
+  left: var(--mouse-x, -100px);
+  
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--accent); /* L'épaisseur et la couleur du cercle */
+  border-radius: 50%;
+  
+  pointer-events: none; /* CRUCIAL : permet de cliquer "à travers" le cercle */
+  z-index: 9999; /* S'assure qu'il est toujours au-dessus du reste */
+  
+  transform: translate(-50%, -50%); /* Centre parfaitement le cercle sur la pointe de la souris */
+  
+  /* Petite lueur externe pour rester dans le thème "lumineux" */
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
+  
+  /* Animation fluide pour les changements de taille */
+  transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
+}
 
-  font-size:.9rem;
-
-  color:var(--primary);
+/* 3. Bonus : Agrandir le cercle quand on survole un lien */
+body:has(a:hover) #custom-cursor {
+  width: 36px;
+  height: 36px;
+  background-color: rgba(52, 211, 153, 0.1); /* Remplit très légèrement le cercle */
 }

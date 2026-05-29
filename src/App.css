@@ -1,3 +1,14 @@
+.app-container {
+  min-height: 100svh;
+  padding-top: 0px;
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    padding-top: 0px;
+  }
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

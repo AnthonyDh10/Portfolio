@@ -1,0 +1,62 @@
+.hero {
+  /* Prend toute la hauteur de l'écran, moins la taille approximative de la navbar */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  color: var(--text);
+  font-size: clamp(48px, 8vw, 80px); /* Texte fluide qui s'adapte aux mobiles */
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  color: var(--primary); /* Ton vert forêt */
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 600;
+  margin-bottom: 32px;
+  letter-spacing: 4px;
+
+}
+
+.description {
+  color: var(--text-secondary);
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+
+/* --- Boutons --- */
+.actions {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* Responsive pour les mobiles */
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
