@@ -5,6 +5,7 @@ import { NavBar } from './components/NavBar/NavBar';
 import { Hero } from './components/Hero/Hero';
 import { SkillsCarousel } from './components/SkillsCarousel/SkillsCarousel';
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
+import { ContactSection } from './components/ContactSection/ContactSection';
 
 function App() {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
@@ -63,6 +64,7 @@ function App() {
         <Hero />
         <SkillsCarousel />
         <ProjectsSection />
+        <ContactSection />
       </main>
     </>
   );

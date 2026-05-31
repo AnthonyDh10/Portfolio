@@ -21,6 +21,11 @@ export function NavBar() {
       label: 'À propos de moi',
       comment: 'Parcours, méthodes de travail et objectifs professionnels',
     },
+    {
+      href: '#contact',
+      label: 'Contact',
+      comment: 'Canaux de contact, CV et message direct',
+    },
 
   ];
 
