@@ -1,60 +1,153 @@
-/* Container global (équivalent de fixed top-0 left-0 right-0 z-50 px-6 py-4) */
 .navbarWrapper {
   position: fixed;
-  top: 0;
+  top: 16px;
   left: 0;
   right: 0;
-  z-index: 50;
-  padding: 5px 5px;
+  z-index: 80;
   display: flex;
   justify-content: center;
 }
 
-/* Le conteneur du menu */
+.navShell {
+  width: min(1120px, calc(100% - 64px));
+  position: relative;
+}
+
 .navbarContent {
-  width: 100%;
-  padding: 16px 32px;
-  border-radius: 0px;
-  
+  position: relative;
+  z-index: 90;
+  padding: 8px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  /* Transition fluide pour les interactions visuelles */
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-
-  /* Gradient de base (non-scrolled) basé sur tes codes couleurs */
-  background: var(--bg);
-  box-shadow: var(--shadow);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
-/* Logo */
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .logo {
   font-size: 24px;
   font-weight: 700;
-  color: var(--primary); /* Correction de --p-primary */
+  color: var(--text);
   font-family: var(--heading);
+  letter-spacing: 0.08em;
 }
 
-/* Container des liens */
-.navLinks {
-  display: flex;
-  gap: 32px;
+.separator {
+  color: color-mix(in srgb, var(--text) 60%, transparent);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.menuButton {
+  display: inline-flex;
   align-items: center;
-}
-
-/* Les liens individuels */
-.navLinks a {
-  font-size: 14px;
-  color: var(--primary); /* Utilise ton vert forêt */
+  border: 0;
+  color: var(--text);
+  background: transparent;
+  padding: 0;
+  font-family: var(--font);
+  font-size: 15px;
   font-weight: 600;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-.navLinks a:hover {
-  opacity: 0.7;
+.menuButton:hover {
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.menuButton:focus-visible,
+.contactButton:focus-visible,
+.menuLink:focus-visible,
+.logo:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.menuButtonLabel {
+  line-height: 1;
+}
+
+.contactButton {
+  color: var(--bg);
+  background: var(--primary);
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.contactButton:hover {
+  background: var(--accent);
+  color: #00130d;
+}
+
+.menuPanel {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: var(--primary);
+  padding: 110px clamp(20px, 7vw, 80px) 40px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.menuPanelInner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menuLink {
+  display: block;
+  font-size: clamp(34px, 8vw, 92px);
+  color: #04150f;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.menuLink:hover {
+  color: rgba(4, 21, 15, 0.6);
+  transform: translateX(6px);
+}
+
+@media (max-width: 1024px) {
+  .navbarWrapper {
+    top: 10px;
+  }
+
+  .navShell {
+    width: calc(100% - 28px);
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .menuButton {
+    font-size: 13px;
+  }
+
+  .contactButton {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .menuPanel {
+    padding-top: 96px;
+  }
 }

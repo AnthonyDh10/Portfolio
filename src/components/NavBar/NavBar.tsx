@@ -1,48 +1,84 @@
-import { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'; 
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import styles from './NavBar.module.css';
 
 export function NavBar() {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Ce hook écoute le scroll de manière hyper optimisée
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() || 0;
-    
-    // Si on scrolle vers le bas ET qu'on a dépassé les 100 premiers pixels
-    if (latest > previous && latest > 100) {
-      setHidden(true); // On cache la navbar
-    } else {
-      setHidden(false); // On la réaffiche dès qu'on remonte
-    }
-  });
+  const links = [
+    { href: '#about', label: 'A propos' },
+    { href: '#skills', label: 'Competences' },
+  ];
+
+  useEffect(() => {
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', onEscape);
+
+    return () => {
+      window.removeEventListener('keydown', onEscape);
+    };
+  }, []);
 
   return (
-    <motion.nav
-      // On remplace initial/animate par des variants pour gérer les deux états
-      variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" } // Remonte la navbar au-dessus de l'écran
-      }}
-      initial="visible"
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={styles.navbarWrapper}
-    >
-      <div className={styles.navbarContent}>
-        <div className={styles.logo}>
-          AD
+    <nav className={styles.navbarWrapper}>
+      <div className={styles.navShell}>
+        <div className={styles.navbarContent}>
+          <div className={styles.leftGroup}>
+            <a className={styles.logo} href="#about" aria-label="Aller a la section A propos">
+              AD
+            </a>
+
+            <span className={styles.separator} aria-hidden="true">
+              |
+            </span>
+
+            <button
+              type="button"
+              className={styles.menuButton}
+              aria-expanded={isMenuOpen}
+              aria-label="Ouvrir le menu"
+              onClick={() => setIsMenuOpen((current) => !current)}
+            >
+              <span className={styles.menuButtonLabel}>{isMenuOpen ? 'Fermer' : 'Menu'}</span>
+            </button>
+          </div>
+
+          <a className={styles.contactButton} href="#contact">
+            Contactez-moi
+          </a>
         </div>
-        
-        <div className={styles.navLinks}>
-          <a href="#about">À propos</a>
-          <a href="#skills">Compétences</a>
-          <a href="#projects">Projets</a>
-          <a href="#contact">Contact</a>
-        </div>
+
+        <AnimatePresence>
+          {isMenuOpen ? (
+            <motion.div
+              className={styles.menuPanel}
+              initial={{ y: '-100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '-100%' }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className={styles.menuPanelInner}>
+                {links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={styles.menuLink}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
 
