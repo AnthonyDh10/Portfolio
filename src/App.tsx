@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { NavBar } from './components/NavBar/NavBar';
 import { Hero } from './components/Hero/Hero';
 import { SkillsCarousel } from './components/SkillsCarousel/SkillsCarousel';
+import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
 
 function App() {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
@@ -61,6 +62,7 @@ function App() {
       <main className="app-container">
         <Hero />
         <SkillsCarousel />
+        <ProjectsSection />
       </main>
     </>
   );
