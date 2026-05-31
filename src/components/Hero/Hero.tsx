@@ -2,14 +2,35 @@ import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
 
 export function Hero() {
-  const easterEggJSON = `{
+  const easterEggCode = `{
   "developer": {
-    "type": "Full-Stack & Data Scientist",
+    "name": "Anthony",
+    "level": 22,
+    "class": [
+      "Full-Stack Developer",
+      "Data Scientist"
+    ],
     "status": "Alternance at CGFL",
-    "available_from": "October 2026",
-    "favorite_ui_style": "Escaliers de pixels"
+    "available": "October 2026",
   }
-}`;
+}
+ 
+void loop() {
+  // Daily routine of a developer
+  solveProblems();
+  learnNewTech();
+  collaborateWithTeam();
+
+    if (energy < 20) {
+      drinkCoffee();
+    } else {
+      drinkCoffee(); //just in case
+    }
+}
+
+
+
+`;
 
   return (
     <section id="about" className={styles.hero}>
@@ -17,10 +38,10 @@ export function Hero() {
       {/* 1. ARRIÈRE-PLAN : Texture de code soumise à la lumière */}
       <div className={styles.codeBackgroundWrapper}>
         <div className={styles.codeLeft}>
-          <pre><code>{easterEggJSON}</code></pre>
+          <pre><code>{easterEggCode}</code></pre>
         </div>
         <div className={styles.codeRight}>
-          <pre><code>{easterEggJSON}</code></pre>
+          <pre><code>{easterEggCode}</code></pre>
         </div>
       </div>
 
