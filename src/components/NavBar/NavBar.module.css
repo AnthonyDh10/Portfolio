@@ -90,7 +90,7 @@
 
 .contactButton:hover {
   background: var(--accent);
-  color: #00130d;
+  color: var(--bg);
 }
 
 .menuPanel {
@@ -115,7 +115,7 @@
 .menuLink {
   display: block;
   font-size: clamp(34px, 8vw, 92px);
-  color: #04150f;
+  color: var(--bg);
   font-weight: 800;
   letter-spacing: 0.01em;
   line-height: 0.95;
@@ -124,7 +124,7 @@
 }
 
 .menuLink:hover {
-  color: rgba(4, 21, 15, 0.6);
+  color: var(--accent);
   transform: translateX(6px);
 }
 
@@ -132,18 +132,19 @@
   border: 0;
   padding: 0;
   background: transparent;
-  color: #04150f;
+  color: var(--bg);
   opacity: 0.9;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .menuCloseArrow:hover {
   opacity: 0.6;
+  color: var(--accent);
   transform: translateY(-2px);
 }
 
 .menuCloseArrow:focus-visible {
-  outline: 2px solid #04150f;
+  outline: 2px solid var(--bg);
   outline-offset: 6px;
   border-radius: 6px;
 }
