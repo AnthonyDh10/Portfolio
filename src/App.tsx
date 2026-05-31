@@ -2,6 +2,7 @@ import './App.css';
 import './index.css';
 import { NavBar } from './components/NavBar/NavBar';
 import { Hero } from './components/Hero/Hero';
+import { SkillsCarousel } from './components/SkillsCarousel/SkillsCarousel';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <NavBar />
       <main className="app-container">
         <Hero />
+        <SkillsCarousel />
       </main>
     </>
   );
