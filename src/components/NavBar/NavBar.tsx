@@ -6,8 +6,8 @@ export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
-    { href: '#about', label: 'A propos' },
-    { href: '#skills', label: 'Competences' },
+    { href: '#about', label: 'À propos' },
+    { href: '#skills', label: 'Compétences' },
   ];
 
   useEffect(() => {
@@ -74,6 +74,15 @@ export function NavBar() {
                   </a>
                 ))}
               </div>
+
+              <button
+                type="button"
+                className={styles.menuCloseArrow}
+                aria-label="Refermer le menu"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className={styles.arrowIcon} aria-hidden="true" />
+              </button>
             </motion.div>
           ) : null}
         </AnimatePresence>
