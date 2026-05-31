@@ -1,13 +1,62 @@
 import './App.css';
 import './index.css';
+import { useEffect, useState } from 'react';
 import { NavBar } from './components/NavBar/NavBar';
 import { Hero } from './components/Hero/Hero';
 import { SkillsCarousel } from './components/SkillsCarousel/SkillsCarousel';
 
 function App() {
+  const [showCustomCursor, setShowCustomCursor] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    const updateCursorAvailability = () => {
+      setShowCustomCursor(mediaQuery.matches);
+    };
+
+    updateCursorAvailability();
+    mediaQuery.addEventListener('change', updateCursorAvailability);
+
+    return () => {
+      mediaQuery.removeEventListener('change', updateCursorAvailability);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!showCustomCursor) {
+      return;
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = e.clientX;
+      const y = e.clientY;
+
+      // Update position for custom cursor and shadow direction.
+      document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const distance = Math.hypot(x - centerX, y - centerY);
+      const lightRadius = 400;
+
+      let intensity = 1 - distance / lightRadius;
+      if (intensity < 0) intensity = 0;
+
+      document.documentElement.style.setProperty('--shadow-intensity', `${intensity}`);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [showCustomCursor]);
+
   return (
     <>
-      <div id="custom-cursor"></div>
+      {showCustomCursor && <div id="custom-cursor"></div>}
       <NavBar />
       <main className="app-container">
         <Hero />
@@ -16,33 +65,5 @@ function App() {
     </>
   );
 }
-
-document.addEventListener("mousemove", (e) => {
-  const x = e.clientX;
-  const y = e.clientY;
-
-  // Mise à jour de la position pour le curseur et la direction de l'ombre
-  document.documentElement.style.setProperty("--mouse-x", `${x}px`);
-  document.documentElement.style.setProperty("--mouse-y", `${y}px`);
-
-  // --- NOUVEAU : Calcul de la proximité ---
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
-  
-  // Calcule la distance (hypoténuse) entre la souris et le centre
-  const distance = Math.hypot(x - centerX, y - centerY);
-
-  // Définit le rayon d'action de la lumière (en pixels). 
-  // Modifie cette valeur pour que la lumière porte plus ou moins loin.
-  const lightRadius = 400; 
-
-  // Calcule une intensité entre 0 (loin) et 1 (proche)
-  let intensity = 1 - (distance / lightRadius);
-  if (intensity < 0) intensity = 0; // Empêche d'avoir des valeurs négatives
-
-  // Envoie l'intensité au CSS
-  document.documentElement.style.setProperty("--shadow-intensity", `${intensity}`);
-});
-
 
 export default App;
