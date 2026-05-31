@@ -6,8 +6,22 @@ export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
-    { href: '#about', label: 'À propos' },
-    { href: '#skills', label: 'Compétences' },
+    {
+      href: '#skills',
+      label: 'Compétences',
+      comment: "Les différentes technologies dont j'ai l'habitude",
+    },
+    {
+      href: '#projects',
+      label: 'Mes projets',
+      comment: 'Sélection de réalisations, études de cas et résultats',
+    },
+    {
+      href: '#about-me',
+      label: 'À propos de moi',
+      comment: 'Parcours, méthodes de travail et objectifs professionnels',
+    },
+
   ];
 
   useEffect(() => {
@@ -70,7 +84,8 @@ export function NavBar() {
                     className={styles.menuLink}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {link.label}
+                    <span className={styles.menuLinkTitle}>{link.label}</span>
+                    <span className={styles.menuLinkComment}>// {link.comment}</span>
                   </a>
                 ))}
               </div>
