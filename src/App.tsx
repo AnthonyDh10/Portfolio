@@ -1,6 +1,7 @@
 import './App.css';
 import './index.css';
 import { useEffect, useState } from 'react';
+import { AboutPage } from './components/AboutPage/AboutPage';
 import { NavBar } from './components/NavBar/NavBar';
 import { Hero } from './components/Hero/Hero';
 import { SkillsCarousel } from './components/SkillsCarousel/SkillsCarousel';
@@ -9,6 +10,7 @@ import { ContactSection } from './components/ContactSection/ContactSection';
 
 function App() {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
+  const isAboutPage = window.location.pathname === '/about';
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -55,6 +57,17 @@ function App() {
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, [showCustomCursor]);
+
+  if (isAboutPage) {
+    return (
+      <>
+        {showCustomCursor && <div id="custom-cursor"></div>}
+        <NavBar />
+        <AboutPage />
+        <ContactSection />
+      </>
+    );
+  }
 
   return (
     <>

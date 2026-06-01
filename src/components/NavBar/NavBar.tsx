@@ -17,7 +17,7 @@ export function NavBar() {
       comment: 'Sélection de réalisations, études de cas et résultats',
     },
     {
-      href: '#about-me',
+      href: '/about',
       label: 'À propos de moi',
       comment: 'Parcours, méthodes de travail et objectifs professionnels',
     },
@@ -48,7 +48,7 @@ export function NavBar() {
       <div className={styles.navShell}>
         <div className={styles.navbarContent}>
           <div className={styles.leftGroup}>
-            <a className={styles.logo} href="#about" aria-label="Aller a la section A propos">
+            <a className={styles.logo} href="/" aria-label="Aller à l'accueil">
               AD
             </a>
 
