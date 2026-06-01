@@ -99,14 +99,23 @@ export function Timeline() {
     };
   }, []);
 
-  return (
+  
+  const handleMarkerClick = (index: number) => {
+    const element = itemRefs.current[index];
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth', // Défilement fluide
+        block: 'center',    // Aligne l'élément au centre de l'écran
+      });
+    }
+  };
+
+return (
     <div className={styles.timeline}>
       {TIMELINE.map((item, index) => {
         const isFirst = index === 0;
         const isLast = index === TIMELINE.length - 1;
         const isMain = item.type === "main";
-        
-        // L'élément est actif seulement si son ID correspond au plus proche du centre
         const isActive = activeId === item.id;
 
         return (
@@ -141,8 +150,13 @@ export function Timeline() {
               </svg>
             )}
 
+            {/* Événement onClick sur le marqueur */}
             <div 
               className={`${styles.marker} ${isMain ? styles.markerMain : styles.markerBranch}`}
+              onClick={() => handleMarkerClick(index)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Centrer l'événement ${item.title}`}
             >
               <img 
                 src={item.logo} 
