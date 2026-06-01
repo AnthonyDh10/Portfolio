@@ -1,5 +1,10 @@
 import styles from './Timeline.module.css';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
+import MTULogo from '../../assets/MTU-Logo.jpg';
+import CGFLLogo from '../../assets/CGFL-Logo.svg';
+import ICMUBLogo from '../../assets/ICMUB-Logo.jpg';
+import UBELogo from '../../assets/UBE-Logo.png';
+
 
 type TimelineItem = {
   id: number;
@@ -24,10 +29,11 @@ const TIMELINE: TimelineItem[] = [
   {
     id: 2,
     type: "branch",
-    period: "2022 - 2023",
-    title: "Stage Développeur Web",
-    description: "Startup Alpha. Création d'un intranet et d'outils internes.",
-    logo: "https://images.unsplash.com/photo-1689443111130-6e9c7dfd8f9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwdGVjaCUyMGxvZ28lMjBhYnN0cmFjdHxlbnwxfHx8fDE3ODAzMTQwMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    period: "Janvier 2021 - Mai 2021",
+    title: "Semestre international à la Munster Technological University à Cork, Irlande",
+    description: "Informatique, Réseaux, Linux",
+    logo: MTULogo,
+    bgColor: "#FFFFFF"
   },
   {
     id: 3,
