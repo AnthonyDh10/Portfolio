@@ -1,10 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
 import styles from './Timeline.module.css';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
 import MTULogo from '../../assets/MTU-Logo.jpg';
 import CGFLLogo from '../../assets/CGFL-Logo.svg';
 import ICMUBLogo from '../../assets/ICMUB-Logo.jpg';
 import UBELogo from '../../assets/UBE-Logo.png';
-
 
 type TimelineItem = {
   id: number;
@@ -54,15 +54,68 @@ const TIMELINE: TimelineItem[] = [
 ];
 
 export function Timeline() {
+  // On stocke désormais un seul ID (ou null) au lieu d'un tableau
+  const [activeId, setActiveId] = useState<number | null>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Calcule le centre exact de la fenêtre
+      const viewportCenter = window.innerHeight / 2;
+      let closestId: number | null = null;
+      let minDistance = Infinity;
+
+      itemRefs.current.forEach((el) => {
+        if (!el) return;
+        
+        // Récupère la position de l'élément par rapport à l'écran
+        const rect = el.getBoundingClientRect();
+        // Calcule le centre de cet élément
+        const elCenter = rect.top + rect.height / 2;
+        // Calcule la distance absolue entre le centre de l'élément et le centre de l'écran
+        const distance = Math.abs(viewportCenter - elCenter);
+
+        // Si cette distance est la plus petite trouvée jusqu'à présent, on met à jour l'ID
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestId = Number(el.getAttribute('data-id'));
+        }
+      });
+
+      // React ignorera la mise à jour si l'ID est identique au précédent (évite les re-rendus inutiles)
+      setActiveId(closestId);
+    };
+
+    // Exécuter une fois au montage pour initialiser le premier élément
+    handleScroll();
+
+    // Ajouter les écouteurs d'événements (passive: true optimise les performances du scroll)
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
   return (
     <div className={styles.timeline}>
       {TIMELINE.map((item, index) => {
         const isFirst = index === 0;
         const isLast = index === TIMELINE.length - 1;
         const isMain = item.type === "main";
+        
+        // L'élément est actif seulement si son ID correspond au plus proche du centre
+        const isActive = activeId === item.id;
 
         return (
-          <div key={item.id} className={`${styles.item} ${isMain ? styles.mainItem : styles.branchItem}`}>
+          <div 
+            key={item.id} 
+            data-id={item.id}
+            ref={(el) => (itemRefs.current[index] = el)}
+            className={`${styles.item} ${isMain ? styles.mainItem : styles.branchItem} ${isActive ? styles.active : ''}`}
+          >
             <div 
               className={styles.verticalLine}
               style={{
@@ -114,7 +167,6 @@ export function Timeline() {
                  {item.description}
                </p>
             </div>
-
           </div>
         );
       })}
