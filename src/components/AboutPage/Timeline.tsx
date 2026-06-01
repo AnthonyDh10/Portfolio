@@ -37,19 +37,30 @@ const TIMELINE: TimelineItem[] = [
   },
   {
     id: 3,
-    type: "branch",
+    type: "main",
     period: "2024 - 2026",
-    title: "Alternance Fullstack",
-    description: "Tech Agency. Développement d'applications web React & Node.js.",
-    logo: "https://images.unsplash.com/photo-1759390304277-df4f95509186?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMHNoYXBlJTIwbG9nb3xlbnwxfHx8fDE3ODAzMTQwMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    title: "Stage technique à l'ICMUB (Institut de Chimie Moléculaire de l'Université de Bourgogne)",
+    description: "Optimisation de 40% de la vitesse d'exécution d'une bibliothèque de calcul de homologie persitente en C++.",
+    logo: ICMUBLogo,
+    bgColor: "#FFFFFF"
   },
   {
     id: 4,
+    type: "branch",
+    period: "SEPTEMBRE 2025 - SEPTEMBRE 2026",
+    title: "Diplôme universitaire Intelligence Artificielle en Santé",
+    description: "Formation sur les applications de l'IA en santé, éthique et réglementation.",
+    logo: UBELogo,
+    bgColor: "#FFFFFF"
+  },
+  {
+    id: 5,
     type: "main",
-    period: "2026",
-    title: "Obtention du diplôme d'Ingénieur",
-    description: "Spécialité Ingénierie Logicielle et Data",
-    logo: "https://images.unsplash.com/photo-1597418895783-f7de85be2839?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBtaW5pbWFsJTIwdHlwb2dyYXBoeSUyMGxvZ298ZW58MXx8fHwxNzgwMzE0MDEyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    period: "SEPTEMBRE 2025 - SEPTEMBRE 2026",
+    title: "Contrat de professionnalisation au CGFL",
+    description: "Développement d'un atlas de scanners CT pour un parcours de radiothérapie sans simulation.",
+    logo: CGFLLogo,
+    bgColor: "#FFFFFF"
   }
 ];
 
