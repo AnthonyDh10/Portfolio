@@ -4,12 +4,12 @@
   left: 0;
   right: 0;
   z-index: 80;
-  display: flex;
-  justify-content: center;
 }
 
 .navShell {
-  width: min(1120px, calc(100% - 64px));
+  width: 100%;
+  padding: 0 32px;
+  box-sizing: border-box;
   position: relative;
 }
 
@@ -176,11 +176,18 @@
 
 @media (max-width: 1024px) {
   .navbarWrapper {
-    top: 10px;
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    z-index: 80;
   }
 
   .navShell {
-    width: calc(100% - 28px);
+    width: 100%;
+    padding: 0 32px;
+    box-sizing: border-box;
+    position: relative; 
   }
 
   .logo {
