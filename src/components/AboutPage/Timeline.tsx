@@ -113,7 +113,7 @@ export function Timeline() {
           <div 
             key={item.id} 
             data-id={item.id}
-            ref={(el) => (itemRefs.current[index] = el)}
+            ref={(el) => { itemRefs.current[index] = el; }}
             className={`${styles.item} ${isMain ? styles.mainItem : styles.branchItem} ${isActive ? styles.active : ''}`}
           >
             <div 
