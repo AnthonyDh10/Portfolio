@@ -118,6 +118,83 @@
   font-size: 0.85rem;
 }
 
+/* =========================================
+   ANIMATION HOVER & DESIGN RÉTRO (Projet SimFree)
+   ========================================= */
+
+.illustrationContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Format responsive sans hauteur fixe */
+  overflow: hidden; /* Indispensable pour masquer ce qui dépasse des rotations */
+  margin-bottom: 1.5rem;
+}
+
+/* --- 1. Visuel Principal (Scanner) --- */
+.scannerWrapper {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 55%; 
+  aspect-ratio: 1 / 0.8; /* Reste un carré parfait */
+  transform: rotate(-10deg); /* Casser la grille */
+  border: 3px solid var(--text); /* Bordure épaisse rétro */
+  background-color: #000;
+  box-shadow: 8px 8px 0px 0px var(--accent);
+
+}
+
+.scannerBase, 
+.scannerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Le masque de segmentation (masqué par défaut via clip-path) */
+.scannerOverlay {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.5s ease-in-out;
+  z-index: 2;
+}
+
+/* --- 2. Icône de Traitement --- */
+.iconWrapper {
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  width: 25%;
+  aspect-ratio: 1 / 1;
+  transform: rotate(10deg); /* Rotation inverse */
+  border: 3px solid var(--text);
+  background-color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  box-shadow: 4px 4px 0px var(--text);
+  transition: transform 0.3s ease;
+}
+
+.iconWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --- 3. Déclencheurs au survol (Hover) --- */
+/* On utilise .card:hover pour cibler les enfants lorsque la card parente est survolée */
+.card:hover .scannerOverlay {
+  clip-path: inset(0 0 0 0); /* Révèle l'image de gauche à droite */
+}
+
+.card:hover .iconWrapper {
+  transform: rotate(10deg) scale(1.05); /* Petit effet de rebond optionnel */
+}
+
 /* --- MOBILE --- */
 @media (max-width: 900px) {
   .section {

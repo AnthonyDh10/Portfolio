@@ -1,6 +1,13 @@
 import styles from './ProjectsSection.module.css';
 import React from 'react';
+
+// Imports des assets
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
+import CT from '../../assets/ct.png';
+import CTMask from '../../assets/ct-mask.png';
+import analysisIcon from '../../assets/analysis-icon.png';
+
+// Imports des composants
 import { Card } from '../Card/Card';
 import { Button } from '../Button/Button';
 import { Title } from '../Title/Title';
@@ -17,7 +24,10 @@ export type ProjectData = {
   isLarge?: boolean;
   text: string;
   images?: ProjectImage[];
-  imageStyle?: React.CSSProperties; 
+  imageStyle?: React.CSSProperties;
+  baseVisual?: string;
+  overlayVisual?: string;
+  iconVisual?: string;
 };
 
 const projectsData: ProjectData[] = [
@@ -27,18 +37,9 @@ const projectsData: ProjectData[] = [
     stack: 'Python, Imagerie médicale, Analyse de données', 
     isLarge: true,
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    images: [
-      { 
-        src: ESEOLogo, 
-        // Première image : En haut à droite
-        style: { float: 'right', width: '120px', marginLeft: '22px', marginBottom: '11px' } 
-      },
-      { 
-        src: ESEOLogo, 
-        // Deuxième image : Plus bas, à gauche
-        style: { float: 'left', width: '80px', marginRight: '22px', marginTop: '40px' } 
-      }
-    ]
+    baseVisual: CT,
+    overlayVisual: CTMask,
+    iconVisual: analysisIcon
   },
   { 
     id: 2, 
@@ -70,7 +71,6 @@ export function ProjectsSection() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <Title as="h3" id="projects-title">Projets</Title>
-          <p className={styles.description}>Sections reservees pour vos prochains projets.</p>
         </header>
 
         <div className={styles.grid}>
@@ -83,10 +83,24 @@ export function ProjectsSection() {
             >
               <div className={styles.visualPlaceholder} aria-hidden="true">
                 
-                {/* TEXTE ET IMAGE REGROUPÉS */}
+                {project.baseVisual && (
+                  <div className={styles.illustrationContainer}>
+                    <div className={styles.scannerWrapper}>
+                      <img src={project.baseVisual} className={styles.scannerBase} alt="Coupe CT brute" />
+                      {project.overlayVisual && (
+                        <img src={project.overlayVisual} className={styles.scannerOverlay} alt="Coupe CT avec masque" />
+                      )}
+                    </div>
+                    {project.iconVisual && (
+                      <div className={styles.iconWrapper}>
+                        <img src={project.iconVisual} alt="Icône d'analyse" />
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 <div className={styles.visualText}>
-                  
-                {project.images && project.images.map((img, index) => (
+                  {!project.baseVisual && project.images && project.images.map((img, index) => (
                     <img 
                       key={index} 
                       src={img.src} 
@@ -95,10 +109,9 @@ export function ProjectsSection() {
                       style={img.style}
                     />
                   ))}
-                  
                   <p>{project.text}</p>
                 </div>
-                
+
               </div>
 
               <div className={styles.cardBody}>
