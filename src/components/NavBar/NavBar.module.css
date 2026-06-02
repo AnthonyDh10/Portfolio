@@ -13,10 +13,14 @@
   position: relative;
 }
 
+/* Transformation de la Navbar en un composant UI rétro */
 .navbarContent {
   position: relative;
   z-index: 90;
-  padding: 8px 0;
+  background-color: var(--bg);
+  border: 3px solid var(--text);
+  box-shadow: 6px 6px 0px 0px var(--accent);
+  padding: 12px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,74 +34,93 @@
 
 .logo {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text);
   font-family: var(--heading);
   letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .separator {
-  color: color-mix(in srgb, var(--text) 60%, transparent);
-  font-size: 18px;
+  color: var(--text);
+  font-size: 20px;
   line-height: 1;
+  font-weight: 700;
 }
 
+/* Bouton Menu : Interaction mécanique au survol */
 .menuButton {
   display: inline-flex;
   align-items: center;
-  border: 0;
+  border: 2px solid transparent;
   color: var(--text);
   background: transparent;
-  padding: 0;
+  padding: 8px 12px;
   font-family: var(--font);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.1s ease;
 }
 
 .menuButton:hover {
-  color: var(--accent);
-  opacity: 0.9;
+  border-color: var(--text);
+  background: color-mix(in srgb, var(--surface) 50%, transparent);
+  box-shadow: 3px 3px 0px 0px var(--accent);
+  transform: translate(-3px, -3px);
+}
+
+.menuButton:active {
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0px 0px var(--accent);
 }
 
 .menuButton:focus-visible,
 .contactButton:focus-visible,
 .menuLink:focus-visible,
 .logo:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 3px;
-  border-radius: 6px;
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .menuButtonLabel {
   line-height: 1;
 }
 
+/* Bouton Contact : Style "Bouton Physique" */
 .contactButton {
-  color: var(--bg);
+  color: #ffffff;
   background: var(--primary);
-  border-radius: 999px;
-  border: 1px solid transparent;
+  border: 3px solid var(--text);
+  border-radius: 0; /* Suppression de l'arrondi */
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 10px 16px;
-  transition: background 0.2s ease, color 0.2s ease;
+  box-shadow: 4px 4px 0px 0px var(--text);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
 }
 
 .contactButton:hover {
-  background: var(--accent);
-  color: var(--bg);
+  background: color-mix(in srgb, var(--primary) 85%, #000);
 }
 
+.contactButton:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--text);
+}
+
+/* Panneau du menu plein écran : Effet "Cadre d'écran" */
 .menuPanel {
   position: fixed;
   inset: 0;
   z-index: 70;
   background: var(--primary);
+  border: 8px solid var(--text); /* Cadre épais rappelant les bordures de consoles */
   padding: 110px clamp(20px, 7vw, 80px) 40px;
   display: flex;
   flex-direction: column;
@@ -112,6 +135,7 @@
   gap: 50px;
 }
 
+/* Liens du Menu : Ombre portée tranchée au survol */
 .menuLink {
   display: grid;
   grid-template-columns: minmax(240px, 340px) minmax(280px, 1fr);
@@ -123,12 +147,13 @@
   letter-spacing: 0.01em;
   line-height: 0.95;
   text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: transform 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
 }
 
 .menuLink:hover {
-  color: var(--accent);
-  transform: translateX(6px);
+  color: var(--text); /* Contraste fort au survol */
+  transform: translateX(8px);
+  text-shadow: 4px 4px 0px var(--accent); /* Ombre solide rétro */
 }
 
 .menuLinkTitle {
@@ -137,57 +162,58 @@
 
 .menuLinkComment {
   font-size: clamp(12px, 1.15vw, 16px);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.3;
   letter-spacing: 0.02em;
-  color: color-mix(in srgb, var(--bg) 72%, transparent);
+  color: color-mix(in srgb, var(--bg) 85%, transparent);
   text-transform: none;
 }
 
+/* Bouton Fermer : Mécanique cliquable */
 .menuCloseArrow {
-  border: 0;
-  padding: 0;
+  border: 3px solid transparent;
+  padding: 12px;
   background: transparent;
   color: var(--bg);
-  opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  transition: transform 0.1s ease, border 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
 }
 
 .menuCloseArrow:hover {
-  opacity: 0.6;
-  color: var(--accent);
-  transform: translateY(-2px);
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--primary);
+  box-shadow: 4px 4px 0px 0px var(--accent);
+  transform: translate(-4px, -4px);
 }
 
-.menuCloseArrow:focus-visible {
-  outline: 2px solid var(--bg);
-  outline-offset: 6px;
-  border-radius: 6px;
+.menuCloseArrow:active {
+  transform: translate(0px, 0px);
+  box-shadow: 0px 0px 0px 0px var(--accent);
 }
 
 .arrowIcon {
   display: inline-block;
   width: 14px;
   height: 14px;
-  border-left: 2px solid currentColor;
-  border-top: 2px solid currentColor;
+  border-left: 3px solid currentColor;
+  border-top: 3px solid currentColor;
   transform: rotate(45deg);
 }
 
+/* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
   .navbarWrapper {
-    position: fixed;
-    top: 16px;
-    left: 0;
-    right: 0;
-    z-index: 80;
+    top: 12px;
   }
 
   .navShell {
-    width: 100%;
-    padding: 0 32px;
-    box-sizing: border-box;
-    position: relative; 
+    padding: 0 16px;
+  }
+  
+  .navbarContent {
+    padding: 8px 16px;
+    box-shadow: 4px 4px 0px 0px var(--accent);
   }
 
   .logo {
@@ -196,20 +222,27 @@
 
   .menuButton {
     font-size: 13px;
+    padding: 6px 10px;
   }
 
   .contactButton {
-    padding: 9px 12px;
+    padding: 8px 12px;
     font-size: 12px;
   }
 
   .menuPanel {
+    border-width: 4px; /* Cadre plus fin sur mobile */
     padding-top: 96px;
   }
 
   .menuLink {
     grid-template-columns: 1fr;
     row-gap: 8px;
+  }
+
+  .menuLink:hover {
+    transform: translateX(4px);
+    text-shadow: 3px 3px 0px var(--accent);
   }
 
   .menuLinkComment {

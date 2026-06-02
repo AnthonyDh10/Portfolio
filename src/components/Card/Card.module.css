@@ -1,0 +1,23 @@
+.card {
+  background-color: var(--bg);
+  border: 3px solid var(--text);
+  box-shadow: 8px 8px 0px 0px var(--accent);
+  padding: 28px;
+  
+  /* Flexbox par défaut car très utile pour les formulaires ou le centrage */
+  display: flex;
+  flex-direction: column;
+  
+  /* S'assure que le contenu interne ne casse pas la largeur de la card */
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .card {
+    padding: 24px;
+    /* On réduit légèrement l'ombre sur mobile pour éviter que ça prenne trop de place */
+    box-shadow: 6px 6px 0px 0px var(--accent);
+  }
+}
