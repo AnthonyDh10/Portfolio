@@ -90,7 +90,6 @@
   padding: 48px 64px;
 }
 
-/* --- STYLES DES TEXTES & OMBRES --- */
 .title {
   color: var(--text);
   font-size: clamp(48px, 8vw, 80px);
