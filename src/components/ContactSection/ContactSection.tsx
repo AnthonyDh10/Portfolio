@@ -1,35 +1,49 @@
-import { FaEnvelope, FaFileAlt, FaLinkedinIn } from 'react-icons/fa';
-import type { ComponentType } from 'react';
+import { FaEnvelope, FaFileAlt, FaLinkedinIn, FaPhoneAlt } from 'react-icons/fa';
+import type { FormEvent } from 'react';
+import type { IconType } from 'react-icons';
 import styles from './ContactSection.module.css';
+import { Card } from '../Card/Card';
+import { Button } from '../Button/Button';
 
-type ContactLink = {
+type ContactInfo = {
   label: string;
+  value?: string;
   href: string;
-  Icon: ComponentType<{ className?: string }>;
+  Icon: IconType;
 };
 
-const contactLinks: ContactLink[] = [
+const contactInfos: ContactInfo[] = [
+  {
+    label: 'Téléphone',
+    value: '+33 6 00 00 00 00',
+    href: 'tel:+33600000000',
+    Icon: FaPhoneAlt,
+  },
   {
     label: 'LinkedIn',
+    value: 'Anthony Dinh',
     href: 'https://www.linkedin.com/in/votre-profil',
     Icon: FaLinkedinIn,
   },
   {
-    label: 'CV',
+    label: 'Curriculum Vitae',
+    value: 'Consulter au format PDF',
     href: '/cv.pdf',
     Icon: FaFileAlt,
   },
-  {
-    label: 'Mail',
-    href: 'mailto:votre.mail@example.com',
-    Icon: FaEnvelope,
-  },
 ];
 
-const mailHref =
-  'mailto:votre.mail@example.com?subject=Contact%20depuis%20le%20portfolio&body=Bonjour%20Anthony%2C%0A%0AJe%20vous%20contacte%20pour...';
-
 export function ContactSection() {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const subject = encodeURIComponent(formData.get('subject') as string);
+    const message = encodeURIComponent(formData.get('message') as string);
+    
+    // Ouvre le client mail par défaut avec les champs remplis
+    window.location.href = `mailto:votre.mail@example.com?subject=${subject}&body=${message}`;
+  };
+
   return (
     <section id="contact" className={styles.section} aria-labelledby="contact-title">
       <div className={styles.inner}>
@@ -38,41 +52,75 @@ export function ContactSection() {
             Contact
           </h3>
           <p className={styles.description}>
-            Echangeons sur vos besoins, une mission ou une opportunite d&apos;alternance.
+            Échangeons sur vos besoins, une mission ou une opportunité d&apos;alternance (disponible octobre 2026).
           </p>
         </header>
 
         <div className={styles.layout}>
-          <article className={styles.mailCard} aria-label="Card d'envoi de mail">
-            <div className={styles.mailIconWrap}>
-              <FaEnvelope className={styles.mailIcon} />
-            </div>
+          {/* Colonne 1 : Informations & Réseaux */}
+          <aside className={styles.infoColumn}>
+            <Card className={styles.retroBox}>
+              <h4 className={styles.boxTitle}>Mes Coordonnées</h4>
+              <div className={styles.infoList}>
+                {contactInfos.map(({ label, value, href, Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className={styles.infoCard}
+                    target={label !== 'Téléphone' ? '_blank' : undefined}
+                    rel={label !== 'Téléphone' ? 'noreferrer' : undefined}
+                  >
+                    <div className={styles.iconWrap}>
+                      <Icon className={styles.icon} />
+                    </div>
+                    <div className={styles.infoContent}>
+                      <span className={styles.infoLabel}>{label}</span>
+                      {value && <span className={styles.infoValue}>{value}</span>}
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </Card>
+          </aside>
 
-            <h4 className={styles.mailTitle}>Envoyer un mail</h4>
-            <p className={styles.mailText}>
-              Ouvre votre client mail avec un objet et un message pre-remplis.
-            </p>
+          {/* Colonne 2 : Formulaire de contact direct */}
+          <article className={styles.formColumn}>
+            <Card className={styles.retroBox}>
+              <div className={styles.formHeader}>
+                <FaEnvelope className={styles.formHeaderIcon} />
+                <h4 className={styles.boxTitle}>Envoyer un message</h4>
+              </div>
+              <form className={styles.contactForm} onSubmit={handleSubmit}>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="subject" className={styles.label}>Objet</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    className={styles.retroInput}
+                    placeholder="Sujet de votre message"
+                    required
+                  />
+                </div>
+                
+                <div className={styles.inputGroup}>
+                  <label htmlFor="message" className={styles.label}>Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    className={styles.retroTextarea}
+                    rows={6}
+                    placeholder="Bonjour Anthony..."
+                    required
+                  />
+                </div>
 
-            <a className={styles.mailButton} href={mailHref}>
-              Demarrer la conversation
-            </a>
+                <Button type="submit" className={styles.retroButton}>
+                  Préparer l'e-mail
+                </Button>
+              </form>
+            </Card>
           </article>
-
-          <div className={styles.linksGrid}>
-            {contactLinks.map(({ label, href, Icon }) => (
-              <a
-                key={label}
-                className={styles.linkCard}
-                href={href}
-                target={label === 'LinkedIn' ? '_blank' : undefined}
-                rel={label === 'LinkedIn' ? 'noreferrer' : undefined}
-                aria-label={`Lien ${label}`}
-              >
-                <Icon className={styles.linkIcon} />
-                <span className={styles.linkLabel}>{label}</span>
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </section>

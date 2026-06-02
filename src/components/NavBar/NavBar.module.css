@@ -78,7 +78,6 @@
 }
 
 .menuButton:focus-visible,
-.contactButton:focus-visible,
 .menuLink:focus-visible,
 .logo:focus-visible {
   outline: 3px solid var(--accent);
@@ -89,30 +88,7 @@
   line-height: 1;
 }
 
-/* Bouton Contact : Style "Bouton Physique" */
-.contactButton {
-  color: #ffffff;
-  background: var(--primary);
-  border: 3px solid var(--text);
-  border-radius: 0; /* Suppression de l'arrondi */
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 10px 16px;
-  box-shadow: 4px 4px 0px 0px var(--text);
-  cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
-}
-
-.contactButton:hover {
-  background: color-mix(in srgb, var(--primary) 85%, #000);
-}
-
-.contactButton:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px 0px var(--text);
-}
+/* Bouton Contact : Délégué au composant <Button> */
 
 /* Panneau du menu plein écran : Effet "Cadre d'écran" */
 .menuPanel {
@@ -223,11 +199,6 @@
   .menuButton {
     font-size: 13px;
     padding: 6px 10px;
-  }
-
-  .contactButton {
-    padding: 8px 12px;
-    font-size: 12px;
   }
 
   .menuPanel {

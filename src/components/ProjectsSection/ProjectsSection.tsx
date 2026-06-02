@@ -1,6 +1,8 @@
 import styles from './ProjectsSection.module.css';
 import React from 'react';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
+import { Card } from '../Card/Card';
+import { Button } from '../Button/Button';
 
 type ProjectImage = {
   src: string;
@@ -74,10 +76,11 @@ export function ProjectsSection() {
 
         <div className={styles.grid}>
           {projectsData.map((project) => (
-            <article 
-              className={`${styles.card} ${project.isLarge ? styles.cardLarge : ''}`} 
-              key={project.id} 
+            <Card 
+              className={`${styles.card} ${project.isLarge ? styles.cardLarge : ''}`}
+              key={project.id}
               aria-label={`Projet ${project.title}`}
+              style={{ padding: 0, overflow: 'visible' }}
             >
               <div className={styles.visualPlaceholder} aria-hidden="true">
                 
@@ -103,16 +106,16 @@ export function ProjectsSection() {
                 <h4 className={styles.cardTitle}>{project.title}</h4>
                 <p className={styles.cardStack}>{project.stack}</p>
                 {project.id === 1 && (
-                  <button 
-                    className={styles.cardButton}
+                  <Button 
                     onClick={handleAtlasClick}
                     aria-label={`Ouvrir les détails du projet ${project.title}`}
+                    className={styles.cardButton}
                   >
                     Voir plus
-                  </button>
+                  </Button>
                 )}
               </div>
-            </article>
+            </Card>
           ))}
         </div>
       </div>

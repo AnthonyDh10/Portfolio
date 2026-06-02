@@ -58,7 +58,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
    - Favoriser les classes CSS réutilisables; éviter les styles inline sauf pour cas d'urgence.
 
 ## UI / UX & Accessibilité
-- Thème : "Health‑Tech" — clair, minimaliste, accents verts.
+- Thème : "Rétro / Pixel Art" — inspiré Nintendo DS/3DS (Pokémon ORAS). Bordures épaisses, ombres solides décalées, angles droits, interactions mécaniques.
 - Utiliser des balises HTML5 sémantiques : `<main>`, `<section>`, `<article>`, `<nav>`.
 - Mobile‑first : construire en priorité pour mobile, puis ajouter breakpoints.
 - Accessibilité :
@@ -68,19 +68,18 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
   - Respecter `prefers-reduced-motion` pour désactiver/simplifier animations.
 
 ### Palette (à utiliser telle quelle depuis `src/index.css`)
-- `--bg`: #F8FAFC — fond global
-- `--surface`: #FFFFFF — surfaces / cartes
-- `--text`: #0F172A — texte principal
-- `--text-secondary`: #64748B — texte secondaire
-- `--primary`: #064E3B — couleur principale (CTA, liens)
-- `--accent`: #10B981 — accent / succès
-- `--border`: #E2E8F0 — bordures
-- `--shadow`: 0 4px 12px rgba(15,23,42,.06) — ombres
+- `--bg`: fond global
+- `--surface`: surfaces / cartes
+- `--text`: texte principal et bordures épaisses
+- `--text-secondary`: texte secondaire
+- `--primary`: couleur principale (CTA, liens)
+- `--accent`: accent / ombres portées solides
+- `--border`: bordures légères (usage limité)
 
 Utilisation recommandée :
-- Boutons principaux : `background: var(--primary); color: var(--surface)`.
-- Boutons secondaires / accents : `background: transparent; color: var(--primary); border: 1px solid var(--border)`.
-- Cartes : `background: var(--surface); box-shadow: var(--shadow); border: 1px solid var(--border)`.
+- Boutons principaux : `background: var(--primary); color: #fff; border: 3px solid var(--text); box-shadow: 4px 4px 0px 0px var(--text)`.
+- Cartes : utiliser le composant `<Card>` — `background: var(--bg); border: 3px solid var(--text); box-shadow: 8px 8px 0px 0px var(--accent)`.
+- Aucun `border-radius` arrondi.
 
 ## Animations (Framer Motion)
 - Utiliser Framer Motion pour entrées en viewport (`whileInView` / `useInView`) et effets `whileHover` pour cartes et boutons.
@@ -121,3 +120,45 @@ Si tu veux, je peux :
 - générer une `ProjectCard` typée en TypeScript conforme à ces règles,
 - convertir une section existante pour utiliser la palette du `index.css`,
 - ou lister les tâches à faire pour améliorer l'accessibilité.
+
+---
+
+## UI & Design System Rules
+
+> Ces règles sont **strictes et non négociables**. Elles définissent l'esthétique "rétro / pixel art" du portfolio, inspirée des interfaces Nintendo DS/3DS (Pokémon ORAS).
+
+### Composants UI
+- **Toujours** utiliser `<Button>` (depuis `src/components/Button/Button.tsx`) pour tout élément interactif cliquable : boutons, liens CTA, ancres.
+- **Toujours** utiliser `<Card>` (depuis `src/components/Card/Card.tsx`) pour tout conteneur de type carte, boîte ou panneau.
+- **Interdit** de recréer des boutons ou des cartes from scratch avec du CSS custom.
+
+### Esthétique Rétro (Pixel Art)
+- **Interdit** d'utiliser des `border-radius` arrondis. Toujours `border-radius: 0` ou omettre la propriété.
+- Utiliser des bordures épaisses et tranchées : `border: 3px solid var(--text)` est la référence.
+- Les effets de fond peuvent utiliser des dégradés en `repeating-linear-gradient` à -45° pour simuler une trame pixel.
+
+### Ombres (Shadows)
+- **Interdit** d'utiliser des ombres floues (`box-shadow` avec un `blur-radius > 0` et une couleur `rgba`).
+- Les ombres doivent être **solides et décalées** : `box-shadow: 4px 4px 0px 0px var(--accent)` ou `var(--text)`.
+- `box-shadow: var(--shadow)` (défini en dur comme ombre floue dans `index.css`) est **interdit** — le remplacer.
+
+### Interactions
+- Les états `:hover` peuvent utiliser un léger décalage négatif : `transform: translate(-3px, -3px)` avec apparition de l'ombre.
+- Les états `:active` **doivent** simuler un enfoncement physique :
+  ```css
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--text);
+  ```
+- Les états `:focus-visible` utilisent un outline solid : `outline: 3px solid var(--accent); outline-offset: 4px;`.
+
+### Variables CSS
+- **Toujours** utiliser les variables du design system définies dans `src/index.css` :
+  - `--bg` : fond global
+  - `--surface` : surfaces secondaires
+  - `--primary` : couleur principale / CTA
+  - `--text` : texte principal et bordures
+  - `--accent` : accent, ombres portées
+  - `--text-secondary` : texte secondaire
+  - `--border` : bordures légères (à éviter au profit de `var(--text)` pour le style rétro)
+- **Interdit** d'utiliser des couleurs hexadécimales ou RGB littérales (sauf `#ffffff` pour le texte blanc sur fond sombre).
+

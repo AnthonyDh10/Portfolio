@@ -1,159 +1,192 @@
 .section {
   position: relative;
-  padding: 6px 0 72px;
+  padding: 24px 0 72px;
+  /* Optionnel: utiliser une police monospace pour accentuer le côté rétro/terminal */
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 
 .inner {
-  border-top: 1px solid var(--border);
-  padding-top: 26px;
+  border-top: 4px dashed color-mix(in srgb, var(--text) 20%, transparent);
+  padding-top: 36px;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 22px;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  margin-bottom: 42px;
 }
 
 .title {
   margin: 0;
-  font-size: clamp(18px, 2vw, 22px);
-  letter-spacing: 0.14em;
+  font-size: clamp(22px, 2.5vw, 28px);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text);
+  font-weight: 800;
+  text-shadow: 3px 3px 0px color-mix(in srgb, var(--primary) 40%, transparent);
 }
 
 .description {
   margin: 0;
-  max-width: 62ch;
+  max-width: 60ch;
   color: var(--text-secondary);
+  font-size: 1.05rem;
 }
 
 .layout {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 18px;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 32px;
+  align-items: start;
 }
 
-.mailCard {
-  border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
-  background:
-    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 45%),
-    linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, transparent), transparent 70%),
-    color-mix(in srgb, var(--bg) 74%, #000000 26%);
-  padding: 20px;
+/* --- Box Rétro / Pixel Art --- */
+.retroBox {
+  gap: 24px;
+  overflow: hidden;
+}
+
+.boxTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+/* --- Colonne 1 : Infos --- */
+.infoList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 220px;
+  gap: 16px;
 }
 
-.mailIconWrap {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+.infoCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--surface) 50%, transparent);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.infoCard:hover {
+  border-color: var(--text);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  transform: translateX(4px);
+}
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
-  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 3px 3px 0px 0px color-mix(in srgb, var(--primary) 60%, transparent);
 }
 
-.mailIcon {
+.icon {
   width: 20px;
   height: 20px;
-  color: var(--text);
 }
 
-.mailTitle {
-  margin: 4px 0 0;
-  color: var(--text);
-  font-size: 1.08rem;
-}
-
-.mailText {
-  margin: 0;
-  color: var(--text-secondary);
-  max-width: 44ch;
-}
-
-.mailButton {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-  min-height: 42px;
-  padding: 0 16px;
-  border-radius: 10px;
-  border: 1px solid color-mix(in srgb, var(--primary) 38%, transparent);
-  color: var(--text);
-  background: color-mix(in srgb, var(--primary) 18%, transparent);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.mailButton:hover {
-  border-color: color-mix(in srgb, var(--primary) 56%, transparent);
-  background: color-mix(in srgb, var(--primary) 24%, transparent);
-}
-
-.linksGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  align-content: start;
-}
-
-.linkCard {
-  min-height: 128px;
-  border-radius: 14px;
-  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
-  background:
-    linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, transparent), transparent 70%),
-    color-mix(in srgb, var(--bg) 72%, #000000 28%);
+.infoContent {
   display: flex;
   flex-direction: column;
+  gap: 4px;
+}
+
+.infoLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.infoValue {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* --- Colonne 2 : Formulaire --- */
+.formHeader {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.linkIcon {
-  width: 28px;
-  height: 28px;
-  color: #ffffff;
+.formHeaderIcon {
+  font-size: 1.5rem;
+  color: var(--primary);
 }
 
-.linkLabel {
-  color: #ffffff;
-  font-size: 0.86rem;
-  letter-spacing: 0.04em;
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-@media (max-width: 1024px) {
-  .section {
-    padding-bottom: 52px;
-  }
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.retroInput,
+.retroTextarea {
+  width: 100%;
+  /* Ajout : s'assure que les paddings sont inclus dans le 100% de width */
+  box-sizing: border-box; 
+  padding: 14px;
+  background-color: var(--surface);
+  border: 2px solid var(--text);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: inset 3px 3px 0px 0px color-mix(in srgb, var(--text) 5%, transparent);
+  transition: all 0.2s ease;
+  resize: vertical;
+  max-width: 100%;
+}
+
+.retroInput:focus,
+.retroTextarea:focus {
+  border-color: var(--primary);
+  /* Ombre de focus reprenant les codes des interfaces de jeux */
+  box-shadow: inset 3px 3px 0px 0px color-mix(in srgb, var(--text) 5%, transparent),
+              0 0 0 3px color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+.retroButton {
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+/* --- Responsive --- */
+@media (max-width: 960px) {
   .layout {
     grid-template-columns: 1fr;
+    gap: 48px;
   }
-
-  .linksGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 720px) {
-  .linksGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .linkCard {
-    min-height: 88px;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 0 16px;
+  
+  .retroButton {
+    width: 100%;
   }
 }

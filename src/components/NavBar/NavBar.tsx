@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styles from './NavBar.module.css';
+import { Button } from '../Button/Button';
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -67,9 +68,9 @@ export function NavBar() {
             </button>
           </div>
 
-          <a className={styles.contactButton} href="#contact">
+          <Button href="#contact">
             Contactez-moi
-          </a>
+          </Button>
         </div>
 
         <AnimatePresence>

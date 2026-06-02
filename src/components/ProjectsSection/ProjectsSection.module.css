@@ -38,19 +38,10 @@
 
 /* --- CARTES --- */
 .card {
-  position: relative; /* Permet au z-index de fonctionner au survol */
-  border-radius: 16px;
-  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
-  background:
-    linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, transparent), transparent 70%),
-    color-mix(in srgb, var(--bg) 72%, #000000 28%);
-  
-  /* CRUCIAL: visible permet à l'image de sortir du cadre */
-  overflow: visible; 
+  position: relative;
   min-height: 240px;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.3s ease;
 }
 
 /* Au survol, la carte passe par-dessus les autres */
@@ -65,12 +56,10 @@
 
 /* --- ZONE VISUELLE --- */
 .visualPlaceholder {
-  border-top-left-radius: 15px; 
-  border-top-right-radius: 15px;
-  position: relative; /* Crucial pour gérer les z-index et position absolute des enfants */
+  position: relative;
   flex-grow: 1; 
-  min-height: 160px; /* Un peu plus grand pour accueillir le texte */
-  padding: 16px; /* Espace pour le texte */
+  min-height: 160px;
+  padding: 16px;
   border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   background:
     radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 40%),
@@ -133,19 +122,8 @@
 
 .cardButton {
   margin-top: 8px;
-  padding: 8px 14px;
-  border: 1px solid var(--primary);
-  background: transparent;
-  color: var(--primary);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.cardButton:hover {
-  background: var(--primary);
-  color: var(--bg);
+  align-self: flex-start;
+  font-size: 0.85rem;
 }
 
 /* --- MOBILE --- */
