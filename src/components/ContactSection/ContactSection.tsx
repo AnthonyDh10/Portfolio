@@ -1,15 +1,16 @@
 import { FaEnvelope, FaFileAlt, FaLinkedinIn, FaPhoneAlt } from 'react-icons/fa';
-import type { FormEvent } from 'react';
-import type { IconType } from 'react-icons';
+import React from 'react'; 
 import styles from './ContactSection.module.css';
+import type { IconType } from 'react-icons';
 import { Card } from '../Card/Card';
 import { Button } from '../Button/Button';
+import { IconContext } from 'react-icons';
 
 type ContactInfo = {
   label: string;
   value?: string;
   href: string;
-  Icon: IconType;
+  Icon: IconType; 
 };
 
 const contactInfos: ContactInfo[] = [
@@ -34,14 +35,13 @@ const contactInfos: ContactInfo[] = [
 ];
 
 export function ContactSection() {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const subject = encodeURIComponent(formData.get('subject') as string);
     const message = encodeURIComponent(formData.get('message') as string);
     
-    // Ouvre le client mail par défaut avec les champs remplis
-    window.location.href = `mailto:votre.mail@example.com?subject=${subject}&body=${message}`;
+    window.location.href = `mailto:adinhpsn@gmail.com?subject=${subject}&body=${message}`;
   };
 
   return (
@@ -71,7 +71,9 @@ export function ContactSection() {
                     rel={label !== 'Téléphone' ? 'noreferrer' : undefined}
                   >
                     <div className={styles.iconWrap}>
-                      <Icon className={styles.icon} />
+                      <IconContext.Provider value={{ className: styles.icon }}>
+                        <Icon />
+                      </IconContext.Provider>
                     </div>
                     <div className={styles.infoContent}>
                       <span className={styles.infoLabel}>{label}</span>
@@ -85,11 +87,15 @@ export function ContactSection() {
 
           {/* Colonne 2 : Formulaire de contact direct */}
           <article className={styles.formColumn}>
-            <Card className={styles.retroBox}>
+            {/* Suppression de styles.retroBox, car <Card> s'occupe déjà des bordures et de l'ombre */}
+            <Card>
               <div className={styles.formHeader}>
-                <FaEnvelope className={styles.formHeaderIcon} />
+                <IconContext.Provider value={{ className: styles.formHeaderIcon }}>
+                  <FaEnvelope />
+                </IconContext.Provider>
                 <h4 className={styles.boxTitle}>Envoyer un message</h4>
               </div>
+              
               <form className={styles.contactForm} onSubmit={handleSubmit}>
                 <div className={styles.inputGroup}>
                   <label htmlFor="subject" className={styles.label}>Objet</label>
@@ -115,8 +121,10 @@ export function ContactSection() {
                   />
                 </div>
 
-                <Button type="submit" className={styles.retroButton}>
-                  Préparer l'e-mail
+                {/* Suppression de styles.retroButton, le composant <Button> gère tout son design. 
+                    Correction de l'apostrophe avec &apos; pour éviter les warnings React. */}
+                <Button type="submit">
+                  Préparer l&apos;e-mail
                 </Button>
               </form>
             </Card>
