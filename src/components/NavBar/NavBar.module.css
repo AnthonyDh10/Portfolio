@@ -13,14 +13,11 @@
   position: relative;
 }
 
-/* Transformation de la Navbar en un composant UI rétro */
+/* La Navbar n'a plus d'encadrement global, elle laisse flotter ses éléments */
 .navbarContent {
   position: relative;
   z-index: 90;
-  background-color: var(--bg);
-  border: 3px solid var(--text);
-  box-shadow: 6px 6px 0px 0px var(--accent);
-  padding: 12px 24px;
+  padding: 12px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,6 +36,8 @@
   font-family: var(--heading);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-shadow: 3px 3px 0px var(--accent);
+  text-decoration: none;
 }
 
 .separator {
@@ -48,55 +47,41 @@
   font-weight: 700;
 }
 
-/* Bouton Menu : Interaction mécanique au survol */
+/* Surcharge du composant <Button> pour le Menu */
 .menuButton {
-  display: inline-flex;
-  align-items: center;
-  border: 2px solid transparent;
-  color: var(--text);
-  background: transparent;
-  padding: 8px 12px;
-  font-family: var(--font);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease, border 0.1s ease;
+  background: var(--bg);
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 4px 4px 0px 0px var(--accent);
 }
 
 .menuButton:hover {
-  border-color: var(--text);
-  background: color-mix(in srgb, var(--surface) 50%, transparent);
-  box-shadow: 3px 3px 0px 0px var(--accent);
-  transform: translate(-3px, -3px);
+  background: color-mix(in srgb, var(--bg) 90%, #ffffff);
+  box-shadow: 4px 4px 0px 0px var(--accent);
 }
 
 .menuButton:active {
-  transform: translate(0px, 0px);
   box-shadow: 0px 0px 0px 0px var(--accent);
-}
-
-.menuButton:focus-visible,
-.menuLink:focus-visible,
-.logo:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 4px;
 }
 
 .menuButtonLabel {
   line-height: 1;
 }
 
-/* Bouton Contact : Délégué au composant <Button> */
+/* Le focus-visible du bouton est géré par <Button>, on garde uniquement ceux-ci */
+.menuLink:focus-visible,
+.logo:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
 
-/* Panneau du menu plein écran : Effet "Cadre d'écran" */
+/* Panneau du menu plein écran */
 .menuPanel {
   position: fixed;
   inset: 0;
   z-index: 70;
   background: var(--primary);
-  border: 8px solid var(--text); /* Cadre épais rappelant les bordures de consoles */
+  border: 8px solid var(--text);
   padding: 110px clamp(20px, 7vw, 80px) 40px;
   display: flex;
   flex-direction: column;
@@ -111,7 +96,7 @@
   gap: 50px;
 }
 
-/* Liens du Menu : Ombre portée tranchée au survol */
+/* Liens du Menu */
 .menuLink {
   display: grid;
   grid-template-columns: minmax(240px, 340px) minmax(280px, 1fr);
@@ -127,9 +112,9 @@
 }
 
 .menuLink:hover {
-  color: var(--text); /* Contraste fort au survol */
+  color: var(--text);
   transform: translateX(8px);
-  text-shadow: 4px 4px 0px var(--accent); /* Ombre solide rétro */
+  text-shadow: 4px 4px 0px var(--accent);
 }
 
 .menuLinkTitle {
@@ -145,26 +130,23 @@
   text-transform: none;
 }
 
-/* Bouton Fermer : Mécanique cliquable */
+/* Surcharge du composant <Button> pour l'icône Fermer */
 .menuCloseArrow {
-  border: 3px solid transparent;
-  padding: 12px;
   background: transparent;
+  border-color: transparent;
+  box-shadow: none;
   color: var(--bg);
-  cursor: pointer;
-  transition: transform 0.1s ease, border 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
+  padding: 12px;
 }
 
 .menuCloseArrow:hover {
-  border-color: var(--text);
   background: var(--text);
+  border-color: var(--text);
   color: var(--primary);
   box-shadow: 4px 4px 0px 0px var(--accent);
-  transform: translate(-4px, -4px);
 }
 
 .menuCloseArrow:active {
-  transform: translate(0px, 0px);
   box-shadow: 0px 0px 0px 0px var(--accent);
 }
 
@@ -188,21 +170,22 @@
   }
   
   .navbarContent {
-    padding: 8px 16px;
-    box-shadow: 4px 4px 0px 0px var(--accent);
+    padding: 8px 0;
   }
 
   .logo {
     font-size: 20px;
+    text-shadow: 2px 2px 0px var(--accent);
   }
 
+  /* Ajustement de la taille pour rester cohérent sur mobile */
   .menuButton {
     font-size: 13px;
     padding: 6px 10px;
   }
 
   .menuPanel {
-    border-width: 4px; /* Cadre plus fin sur mobile */
+    border-width: 4px;
     padding-top: 96px;
   }
 

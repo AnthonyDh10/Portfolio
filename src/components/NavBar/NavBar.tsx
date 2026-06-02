@@ -27,7 +27,6 @@ export function NavBar() {
       label: 'Contact',
       comment: 'Canaux de contact, CV et message direct',
     },
-
   ];
 
   useEffect(() => {
@@ -57,15 +56,16 @@ export function NavBar() {
               |
             </span>
 
-            <button
+            {/* Utilisation du nouveau composant Button pour le Menu */}
+            <Button
               type="button"
               className={styles.menuButton}
               aria-expanded={isMenuOpen}
-              aria-label="Ouvrir le menu"
+              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
               onClick={() => setIsMenuOpen((current) => !current)}
             >
               <span className={styles.menuButtonLabel}>{isMenuOpen ? 'Fermer' : 'Menu'}</span>
-            </button>
+            </Button>
           </div>
 
           <Button href="#contact">
