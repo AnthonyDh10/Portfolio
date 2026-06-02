@@ -51,7 +51,7 @@ export function ContactSection() {
         <header className={styles.header}>
           <Title as="h3" id="contact-title">Contact</Title>
           <p className={styles.description}>
-            Échangeons sur vos besoins, une mission ou une opportunité d&apos;alternance (disponible octobre 2026).
+            Échangeons sur vos besoins, une mission ou autre.
           </p>
         </header>
 
@@ -59,7 +59,7 @@ export function ContactSection() {
           {/* Colonne 1 : Informations & Réseaux */}
           <aside className={styles.infoColumn}>
             <Card className={styles.retroBox}>
-              <h4 className={styles.boxTitle}>Mes Coordonnées</h4>
+              <Title as="h4" id="contact-title">Mes Coordonnées</Title>
               <div className={styles.infoList}>
                 {contactInfos.map(({ label, value, href, Icon }) => (
                   <a
@@ -92,7 +92,7 @@ export function ContactSection() {
                 <IconContext.Provider value={{ className: styles.formHeaderIcon }}>
                   <FaEnvelope />
                 </IconContext.Provider>
-                <h4 className={styles.boxTitle}>Envoyer un message</h4>
+                <Title as="h4" id="contact-title">Envoyer un message</Title>
               </div>
               
               <form className={styles.contactForm} onSubmit={handleSubmit}>
