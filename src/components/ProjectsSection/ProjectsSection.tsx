@@ -1,19 +1,66 @@
 import styles from './ProjectsSection.module.css';
+import React, { useState } from 'react';
+import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
+import { AtlasModal } from '../ProjectModals/AtlasModal';
 
-type PlaceholderProject = {
+type ProjectImage = {
+  src: string;
+  style?: React.CSSProperties;
+};
+
+export type ProjectData = {
   id: number;
   title: string;
   stack: string;
+  isLarge?: boolean;
+  text: string;
+  images?: ProjectImage[];
+  imageStyle?: React.CSSProperties; 
 };
 
-const placeholderProjects: PlaceholderProject[] = [
-  { id: 1, title: 'Projet 01', stack: 'Stack a definir' },
-  { id: 2, title: 'Projet 02', stack: 'Stack a definir' },
-  { id: 3, title: 'Projet 03', stack: 'Stack a definir' },
-  { id: 4, title: 'Projet 04', stack: 'Stack a definir' },
+const projectsData: ProjectData[] = [
+  { 
+    id: 1, 
+    title: 'Développement d\'un atlas de scanners pour l\'optimisation du parcours de radiothérapie.', 
+    stack: 'Python, Imagerie médicale, Analyse de données', 
+    isLarge: true,
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    images: [
+      { 
+        src: ESEOLogo, 
+        // Première image : En haut à droite
+        style: { float: 'right', width: '120px', marginLeft: '22px', marginBottom: '11px' } 
+      },
+      { 
+        src: ESEOLogo, 
+        // Deuxième image : Plus bas, à gauche
+        style: { float: 'left', width: '80px', marginRight: '22px', marginTop: '40px' } 
+      }
+    ]
+  },
+  { 
+    id: 2, 
+    title: 'Projet 02', 
+    stack: 'Stack a definir',
+    text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+    images: [
+      { 
+        src: ESEOLogo, 
+        style: { float: 'left', width: '90px', marginRight: '16px', marginBottom: '11px' } 
+      }
+    ]
+  },
+  { 
+    id: 3, 
+    title: 'Projet 03', 
+    stack: 'Stack a definir',
+    text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
+  },
 ];
 
 export function ProjectsSection() {
+  const [isAtlasModalOpen, setIsAtlasModalOpen] = useState(false);
+
   return (
     <section id="projects" className={styles.section} aria-labelledby="projects-title">
       <div className={styles.inner}>
@@ -25,20 +72,56 @@ export function ProjectsSection() {
         </header>
 
         <div className={styles.grid}>
-          {placeholderProjects.map((project) => (
-            <article className={styles.card} key={project.id} aria-label={`Placeholder ${project.title}`}>
+          {projectsData.map((project) => (
+            <article 
+              className={`${styles.card} ${project.isLarge ? styles.cardLarge : ''}`} 
+              key={project.id} 
+              aria-label={`Projet ${project.title}`}
+            >
               <div className={styles.visualPlaceholder} aria-hidden="true">
-                <span className={styles.visualLabel}>Placeholder</span>
+                
+                {/* TEXTE ET IMAGE REGROUPÉS */}
+                <div className={styles.visualText}>
+                  
+                {project.images && project.images.map((img, index) => (
+                    <img 
+                      key={index} 
+                      src={img.src} 
+                      alt={`Visuel ${index + 1} du ${project.title}`}
+                      className={styles.popOutImage} 
+                      style={img.style}
+                    />
+                  ))}
+                  
+                  <p>{project.text}</p>
+                </div>
+                
               </div>
 
               <div className={styles.cardBody}>
                 <h4 className={styles.cardTitle}>{project.title}</h4>
                 <p className={styles.cardStack}>{project.stack}</p>
+                {project.id === 1 && (
+                  <button 
+                    className={styles.cardButton}
+                    onClick={() => setIsAtlasModalOpen(true)}
+                    aria-label={`Ouvrir les détails du projet ${project.title}`}
+                  >
+                    Voir plus
+                  </button>
+                )}
               </div>
             </article>
           ))}
         </div>
       </div>
+
+      {isAtlasModalOpen && (
+        <AtlasModal 
+          project={projectsData[0]} 
+          onClose={() => setIsAtlasModalOpen(false)} 
+        />
+      )}
     </section>
   );
 }

@@ -29,29 +29,49 @@
   color: var(--text-secondary);
 }
 
+/* --- BENTO GRID --- */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
+/* --- CARTES --- */
 .card {
+  position: relative; /* Permet au z-index de fonctionner au survol */
   border-radius: 16px;
   border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
   background:
     linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, transparent), transparent 70%),
     color-mix(in srgb, var(--bg) 72%, #000000 28%);
-  overflow: hidden;
+  
+  /* CRUCIAL: visible permet à l'image de sortir du cadre */
+  overflow: visible; 
   min-height: 240px;
   display: flex;
   flex-direction: column;
+  transition: border-color 0.3s ease;
 }
 
+/* Au survol, la carte passe par-dessus les autres */
+.card:hover {
+  z-index: 10; 
+}
+
+/* La grande carte (Option A) prend 2 rangées */
+.cardLarge {
+  grid-row: span 2;
+}
+
+/* --- ZONE VISUELLE --- */
 .visualPlaceholder {
-  min-height: 128px;
+  border-top-left-radius: 15px; 
+  border-top-right-radius: 15px;
+  position: relative; /* Crucial pour gérer les z-index et position absolute des enfants */
+  flex-grow: 1; 
+  min-height: 160px; /* Un peu plus grand pour accueillir le texte */
+  padding: 16px; /* Espace pour le texte */
   border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-  display: grid;
-  place-items: center;
   background:
     radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 40%),
     repeating-linear-gradient(
@@ -59,27 +79,44 @@
       color-mix(in srgb, var(--text) 6%, transparent) 0 10px,
       transparent 10px 20px
     );
+  overflow: visible; 
 }
 
-.visualLabel {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+/* Texte par-dessus l'image */
+.visualText {
+  position: relative;
+  z-index: 2;
   color: var(--text);
-  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
-  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  font-size: 0.9rem;
+  line-height: 1.4; 
 }
 
+/* --- ANIMATION POP-OUT --- */
+.popOutImage {
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+  shape-outside: margin-box;
+}
+
+/* L'effet de pop-out au survol de la carte */
+.card:hover .popOutImage {
+  transform: scale(1.35) translateY(-10px);
+}
+
+/* L'effet s'active quand on survole la CARTE, pas juste l'image */
+.card:hover .popOutImage {
+  transform: scale(1.35) translateY(-15px);
+}
+
+/* --- CORPS DE LA CARTE --- */
 .cardBody {
   padding: 14px 16px 16px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  /* Pousse le texte vers le bas si la carte est très haute */
+  justify-content: flex-end; 
 }
 
 .cardTitle {
@@ -94,6 +131,24 @@
   font-size: 0.92rem;
 }
 
+.cardButton {
+  margin-top: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cardButton:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+/* --- MOBILE --- */
 @media (max-width: 900px) {
   .section {
     padding-bottom: 48px;
@@ -105,5 +160,10 @@
 
   .card {
     min-height: 220px;
+  }
+
+  /* Sur mobile, on annule le span 2 pour que les cartes s'empilent naturellement */
+  .cardLarge {
+    grid-row: auto;
   }
 }
