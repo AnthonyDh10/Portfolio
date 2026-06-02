@@ -2,6 +2,7 @@ import { FaEnvelope, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { Timeline } from "./Timeline"; 
 import styles from './AboutPage.module.css';
 import { Title } from '../Title/Title';
+import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
 
 export function AboutPage() {
   return (
@@ -10,7 +11,7 @@ export function AboutPage() {
         <aside className={styles.sidebar}>
           <div className={styles.portraitFrame}>
             <img 
-              src="https://images.unsplash.com/photo-1562813733-b31f71025d54?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYW4lMjBkZXZlbG9wZXIlMjBwb3J0cmFpdCUyMGRhcmt8ZW58MXx8fHwxNzgwMzEzNzAxfDA&ixlib=rb-4.1.0&q=80&w=1080" 
+              src={ESEOLogo} 
               alt="Portrait d'Anthony Dinh" 
               loading="lazy"
               className={styles.portraitImage}
@@ -22,9 +23,10 @@ export function AboutPage() {
 
           <div>
             <Title as="h1">Anthony Dinh</Title>
-            <Title as="h2">Ingénieur Full-Stack <br /> 
+            <h2 className={styles.role}>
+              Ingénieur Full-Stack <br /> 
               Data Scientist
-            </Title>
+            </h2>
           </div>
 
           <p className={styles.description}>
