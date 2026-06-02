@@ -15,14 +15,6 @@
   margin-bottom: 22px;
 }
 
-.title {
-  margin: 0;
-  font-size: clamp(18px, 2vw, 22px);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text);
-}
-
 .description {
   margin: 0;
   max-width: 62ch;

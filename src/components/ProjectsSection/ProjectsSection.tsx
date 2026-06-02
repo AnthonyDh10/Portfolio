@@ -3,6 +3,7 @@ import React from 'react';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
 import { Card } from '../Card/Card';
 import { Button } from '../Button/Button';
+import { Title } from '../Title/Title';
 
 type ProjectImage = {
   src: string;
@@ -68,9 +69,7 @@ export function ProjectsSection() {
     <section id="projects" className={styles.section} aria-labelledby="projects-title">
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h3 id="projects-title" className={styles.title}>
-            Projets
-          </h3>
+          <Title as="h3" id="projects-title">Projets</Title>
           <p className={styles.description}>Sections reservees pour vos prochains projets.</p>
         </header>
 

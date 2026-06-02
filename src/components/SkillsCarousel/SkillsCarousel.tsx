@@ -11,6 +11,7 @@ import {
 import { FaDatabase, FaMicrosoft } from 'react-icons/fa';
 import type { ComponentType } from 'react';
 import styles from './SkillsCarousel.module.css';
+import { Title } from '../Title/Title';
 
 type Skill = {
   name: string;
@@ -36,9 +37,7 @@ export function SkillsCarousel() {
   return (
     <section id="skills" className={styles.section} aria-labelledby="skills-title">
       <div className={styles.inner}>
-        <h3 id="skills-title" className={styles.title}>
-          Competences
-        </h3>
+        <Title as="h3" id="skills-title">Competences</Title>
 
         <div className={styles.viewport} aria-label="Carousel des competences">
           <div className={styles.track}>

@@ -98,10 +98,10 @@
 
 /* Liens du Menu */
 .menuLink {
-  display: grid;
-  grid-template-columns: minmax(240px, 340px) minmax(280px, 1fr);
-  column-gap: clamp(34px, 8vw, 80px);
-  align-items: baseline;
+  /* Passage en flex vu que le commentaire a été retiré */
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espace entre le texte et la flèche */
   font-size: clamp(34px, 8vw, 44px);
   color: var(--bg);
   font-weight: 800;
@@ -113,7 +113,6 @@
 
 .menuLink:hover {
   color: var(--text);
-  transform: translateX(8px);
   text-shadow: 4px 4px 0px var(--accent);
 }
 
@@ -121,20 +120,26 @@
   white-space: nowrap;
 }
 
-.menuLinkComment {
-  font-size: clamp(12px, 1.15vw, 16px);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  color: color-mix(in srgb, var(--bg) 85%, transparent);
-  text-transform: none;
+/* Animation et style de la flèche gauche */
+.menuLinkArrow {
+  opacity: 0;
+  /* La flèche démarre décalée vers la droite pour glisser vers la gauche */
+  transform: translateX(15px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Apparition au survol/focus */
+.menuLink:hover .menuLinkArrow,
+.menuLink:active .menuLinkArrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Surcharge du composant <Button> pour l'icône Fermer */
 .menuCloseArrow {
-  background: transparent;
+  background: var(--text);
   border-color: transparent;
-  box-shadow: none;
+  box-shadow: var(--accent) 4px 4px 0px 0px;
   color: var(--bg);
   padding: 12px;
 }
@@ -178,7 +183,6 @@
     text-shadow: 2px 2px 0px var(--accent);
   }
 
-  /* Ajustement de la taille pour rester cohérent sur mobile */
   .menuButton {
     font-size: 13px;
     padding: 6px 10px;
@@ -190,18 +194,11 @@
   }
 
   .menuLink {
-    grid-template-columns: 1fr;
-    row-gap: 8px;
+    gap: 12px; /* Réduction de l'espace sur mobile */
   }
 
   .menuLink:hover {
-    transform: translateX(4px);
     text-shadow: 3px 3px 0px var(--accent);
-  }
-
-  .menuLinkComment {
-    font-size: 13px;
-    max-width: 46ch;
   }
 
   .arrowIcon {

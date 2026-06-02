@@ -5,6 +5,7 @@ import MTULogo from '../../assets/MTU-Logo.jpg';
 import CGFLLogo from '../../assets/CGFL-Logo.svg';
 import ICMUBLogo from '../../assets/ICMUB-Logo.jpg';
 import UBELogo from '../../assets/UBE-Logo.png';
+import { Title } from '../Title/Title';
 
 type TimelineItem = {
   id: number;
@@ -185,9 +186,7 @@ return (
                <div className={styles.period}>
                  {item.period}
                </div>
-               <h3 className={styles.title}>
-                 {item.title}
-               </h3>
+               <Title as="h3">{item.title}</Title>
                <p className={styles.description}>
                  {item.description}
                </p>

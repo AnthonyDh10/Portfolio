@@ -4,6 +4,7 @@ import styles from './ContactSection.module.css';
 import type { IconType } from 'react-icons';
 import { Card } from '../Card/Card';
 import { Button } from '../Button/Button';
+import { Title } from '../Title/Title';
 import { IconContext } from 'react-icons';
 
 type ContactInfo = {
@@ -48,9 +49,7 @@ export function ContactSection() {
     <section id="contact" className={styles.section} aria-labelledby="contact-title">
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h3 id="contact-title" className={styles.title}>
-            Contact
-          </h3>
+          <Title as="h3" id="contact-title">Contact</Title>
           <p className={styles.description}>
             Échangeons sur vos besoins, une mission ou une opportunité d&apos;alternance (disponible octobre 2026).
           </p>

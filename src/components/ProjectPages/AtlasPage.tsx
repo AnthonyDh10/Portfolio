@@ -2,6 +2,7 @@ import styles from './AtlasPage.module.css';
 import { useEffect } from 'react';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
 import { Button } from '../Button/Button';
+import { Title } from '../Title/Title';
 
 export function AtlasPage() {
   useEffect(() => {
@@ -20,7 +21,7 @@ export function AtlasPage() {
       <div className={styles.container}>
         <header className={styles.header}>
           <Button href="/#projects">← Retour aux projets</Button>
-          <h1 className={styles.title}>{projectData.title}</h1>
+          <Title as="h1">{projectData.title}</Title>
           <p className={styles.stack}>{projectData.stack}</p>
         </header>
 

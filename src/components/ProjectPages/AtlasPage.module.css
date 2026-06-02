@@ -12,16 +12,6 @@
   margin-bottom: 60px;
 }
 
-
-
-.title {
-  margin: 0 0 16px;
-  font-size: clamp(24px, 4vw, 42px);
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.2;
-}
-
 .stack {
   margin: 0;
   color: var(--primary);

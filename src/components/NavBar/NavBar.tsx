@@ -6,27 +6,12 @@ import { Button } from '../Button/Button';
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Les commentaires ont été retirés pour plus de clarté
   const links = [
-    {
-      href: '#skills',
-      label: 'Compétences',
-      comment: "Les différentes technologies dont j'ai l'habitude",
-    },
-    {
-      href: '#projects',
-      label: 'Mes projets',
-      comment: 'Sélection de réalisations, études de cas et résultats',
-    },
-    {
-      href: '/about',
-      label: 'À propos de moi',
-      comment: 'Parcours, méthodes de travail et objectifs professionnels',
-    },
-    {
-      href: '#contact',
-      label: 'Contact',
-      comment: 'Canaux de contact, CV et message direct',
-    },
+    { href: '#skills', label: 'Compétences' },
+    { href: '#projects', label: 'Mes projets' },
+    { href: '/about', label: 'À propos de moi' },
+    { href: '#contact', label: 'Contact' },
   ];
 
   useEffect(() => {
@@ -56,7 +41,6 @@ export function NavBar() {
               |
             </span>
 
-            {/* Utilisation du nouveau composant Button pour le Menu */}
             <Button
               type="button"
               className={styles.menuButton}
@@ -91,19 +75,22 @@ export function NavBar() {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <span className={styles.menuLinkTitle}>{link.label}</span>
-                    <span className={styles.menuLinkComment}>// {link.comment}</span>
+                    {/* Ajout de la flèche ici */}
+                    <span className={styles.menuLinkArrow} aria-hidden="true">
+                      &larr;
+                    </span>
                   </a>
                 ))}
               </div>
 
-              <button
+              <Button
                 type="button"
                 className={styles.menuCloseArrow}
                 aria-label="Refermer le menu"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className={styles.arrowIcon} aria-hidden="true" />
-              </button>
+              </Button>
             </motion.div>
           ) : null}
         </AnimatePresence>

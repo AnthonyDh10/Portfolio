@@ -1,6 +1,7 @@
 import { FaEnvelope, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { Timeline } from "./Timeline"; 
 import styles from './AboutPage.module.css';
+import { Title } from '../Title/Title';
 
 export function AboutPage() {
   return (
@@ -20,13 +21,10 @@ export function AboutPage() {
           </div>
 
           <div>
-            <h1 className={styles.name}>
-              Anthony Dinh
-            </h1>
-            <h2 className={styles.role}>
-              Ingénieur Full-Stack <br /> 
+            <Title as="h1">Anthony Dinh</Title>
+            <Title as="h2">Ingénieur Full-Stack <br /> 
               Data Scientist
-            </h2>
+            </Title>
           </div>
 
           <p className={styles.description}>
