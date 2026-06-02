@@ -53,13 +53,7 @@
   min-height: 160px;
   padding: 16px;
   border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-  background:
-    radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 40%),
-    repeating-linear-gradient(
-      -45deg,
-      color-mix(in srgb, var(--text) 6%, transparent) 0 10px,
-      transparent 10px 20px
-    );
+  background: var(--bg);
   overflow: visible; 
 }
 

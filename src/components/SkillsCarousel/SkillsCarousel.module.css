@@ -1,95 +1,161 @@
 .section {
   position: relative;
-  padding: 32px 0 56px;
+  padding: 32px 0 72px;
 }
 
 .inner {
-  border-top: 1px solid var(--border);
-  padding-top: 24px;
+  border-top: 4px dashed color-mix(in srgb, var(--text) 20%, transparent);
+  padding-top: 36px;
 }
 
-.viewport {
-  position: relative;
-  overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 1) 8%,
-    rgba(0, 0, 0, 1) 92%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 0, 0, 1) 8%,
-    rgba(0, 0, 0, 1) 92%,
-    transparent 100%
-  );
+.sectionTitle {
+  margin-bottom: 32px;
+  text-align: center;
 }
 
-.track {
+.inventoryWrapper {
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
-  gap: 16px;
-  width: max-content;
-  animation: scroll 28s linear infinite;
+  flex-direction: column;
 }
 
-.card {
-  min-width: 132px;
-  padding: 14px 10px;
+/* --- LE SYSTÈME D'ONGLETS --- */
+.tabsContainer {
+  display: flex;
+  gap: 8px;
+  /* Décale légèrement les onglets vers la droite pour le style */
+  padding-left: 16px; 
+}
+
+.tabButton {
+  background: var(--surface);
+  border: 3px solid var(--text);
+  /* On cache la bordure du bas pour fusionner avec la Card principale (effet de dossier) */
+  border-bottom: none; 
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  
+  /* Forme d'onglet rétro (angles droits) */
+  box-shadow: 4px -4px 0px 0px var(--accent);
+  transform: translateY(4px); /* Repose sur la Card */
+  transition: all 0.1s ease;
+  z-index: 1;
+}
+
+.tabButton:hover {
+  background: color-mix(in srgb, var(--surface) 80%, var(--primary));
+  color: var(--text);
+}
+
+.tabButton.activeTab {
+  background: var(--bg);
+  color: var(--text);
+  /* L'onglet actif se "lève" et efface l'ombre pour paraître au premier plan */
+  transform: translateY(0);
+  box-shadow: 4px -4px 0px 0px var(--text);
+  padding-bottom: 16px; /* Paraît plus grand */
+  z-index: 3;
+}
+
+.tabButton:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: -2px;
+}
+
+/* --- L'ÉCRAN DE L'INVENTAIRE --- */
+.inventoryScreen {
+  position: relative;
+  z-index: 2;
+  /* Surcharge légère du composant Card si besoin */
+  padding: 32px;
+  min-height: 280px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* --- LES ITEMS (COMPÉTENCES) --- */
+.skillCard {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background: transparent;
-  border: 2px solid var(--text);
-  border-radius: 0;
+  gap: 12px;
+  padding: 16px;
+  background: var(--surface);
+  border: 3px solid var(--text);
+  box-shadow: 4px 4px 0px 0px var(--accent);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.icon {
-  width: 34px;
-  height: 34px;
-  color: #ffffff;
+.skillCard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px var(--accent);
+  background: color-mix(in srgb, var(--bg) 90%, var(--primary));
+}
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+}
+
+.iconWrap svg {
+  width: 36px;
+  height: 36px;
 }
 
 .label {
-  color: #ffffff;
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
 }
 
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(calc(-50% - 8px));
-  }
-}
-
-@media (max-width: 1024px) {
-  .section {
-    padding: 24px 0 44px;
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .tabsContainer {
+    padding-left: 0;
+    gap: 4px;
+    /* Sur mobile, on permet aux onglets de défiler s'il y en a trop */
+    overflow-x: auto;
+    padding-bottom: 4px;
   }
 
-  .card {
-    min-width: 120px;
-    padding: 12px 8px;
+  .tabButton {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .inventoryScreen {
+    padding: 24px 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+  }
+
+  .skillCard {
+    padding: 12px;
   }
 
   .icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .track {
-    animation-duration: 22s;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .track {
-    animation: none;
+    width: 28px;
+    height: 28px;
   }
 }

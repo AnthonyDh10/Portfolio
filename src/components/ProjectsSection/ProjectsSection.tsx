@@ -70,7 +70,7 @@ export function ProjectsSection() {
     <section id="projects" className={styles.section} aria-labelledby="projects-title">
       <div className={styles.inner}>
         <header className={styles.header}>
-          <Title as="h3" id="projects-title">Projets</Title>
+          <Title as="h3" id="projects-title">Quelques projets</Title>
         </header>
 
         <div className={styles.grid}>
