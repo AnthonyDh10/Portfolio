@@ -14,7 +14,6 @@
 }
 
 .inventoryWrapper {
-  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -23,7 +22,7 @@
 /* --- LE SYSTÈME D'ONGLETS --- */
 .tabsContainer {
   display: flex;
-  gap: 8px;
+  gap: 16px;
   /* Décale légèrement les onglets vers la droite pour le style */
   padding-left: 16px; 
 }
@@ -31,7 +30,6 @@
 .tabButton {
   background: var(--surface);
   border: 3px solid var(--text);
-  /* On cache la bordure du bas pour fusionner avec la Card principale (effet de dossier) */
   border-bottom: none; 
   padding: 12px 24px;
   font-family: inherit;
@@ -43,7 +41,7 @@
   cursor: pointer;
   
   /* Forme d'onglet rétro (angles droits) */
-  box-shadow: 4px -4px 0px 0px var(--accent);
+  box-shadow: 4px 4px 0px 0px var(--accent);
   transform: translateY(4px); /* Repose sur la Card */
   transition: all 0.1s ease;
   z-index: 1;
@@ -59,9 +57,9 @@
   color: var(--text);
   /* L'onglet actif se "lève" et efface l'ombre pour paraître au premier plan */
   transform: translateY(0);
-  box-shadow: 4px -4px 0px 0px var(--text);
+  box-shadow: 4px 4px 0px 0px var(--text);
   padding-bottom: 16px; /* Paraît plus grand */
-  z-index: 3;
+  z-index: 2;
 }
 
 .tabButton:focus-visible {
@@ -73,7 +71,6 @@
 .inventoryScreen {
   position: relative;
   z-index: 2;
-  /* Surcharge légère du composant Card si besoin */
   padding: 32px;
   min-height: 280px;
 }
@@ -137,7 +134,7 @@
 
   .tabButton {
     padding: 10px 16px;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     white-space: nowrap;
   }
 
@@ -154,7 +151,7 @@
     padding: 12px;
   }
 
-  .icon {
+  .iconWrap svg {
     width: 28px;
     height: 28px;
   }
