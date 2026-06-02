@@ -57,7 +57,7 @@ body::before {
   /* Un dégradé radial centré sur les coordonnées de la souris */
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(16, 185, 129, 0.08), /* La couleur de la lumière (basée sur --primary) */
+    rgba(16, 185, 129, 0.2), /* La couleur de la lumière (basée sur --primary) */
     transparent 40%
   );
 }
@@ -133,8 +133,8 @@ body, a, button {
   top: var(--mouse-y, -100px); 
   left: var(--mouse-x, -100px);
   
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   border: 1.5px solid var(--text); /* L'épaisseur et la couleur du cercle */
   border-radius: 50%;
   
@@ -144,15 +144,17 @@ body, a, button {
   transform: translate(-50%, -50%); /* Centre parfaitement le cercle sur la pointe de la souris */
   
   /* Petite lueur externe pour rester dans le thème "lumineux" */
-  box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
+  box-shadow: 0 0 8px var(--accent); /* Fallback vert émeraude si --primary n'existe pas */
   
   /* Animation fluide pour les changements de taille */
   transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
 }
 
 /* 3. Bonus : Agrandir le cercle quand on survole un lien */
-body:has(a:hover) #custom-cursor {
-  width: 36px;
-  height: 36px;
+body:has(a:hover, button:hover, input:hover, textarea:hover) #custom-cursor {
+  width: 30px;
+  height: 30px;
   background-color: rgba(52, 211, 153, 0.1); /* Remplit très légèrement le cercle */
+
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
 }

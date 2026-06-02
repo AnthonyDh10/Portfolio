@@ -46,7 +46,7 @@ function App() {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
       const distance = Math.hypot(x - centerX, y - centerY);
-      const lightRadius = 400;
+      const lightRadius = 700;
 
       let intensity = 1 - distance / lightRadius;
       if (intensity < 0) intensity = 0;
