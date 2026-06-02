@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'; 
 import styles from './Hero.module.css';
 import { Card } from '../Card/Card';
-import { Title } from '../Title/Title';
 
 export function Hero() {
   const easterEggCode = `{
