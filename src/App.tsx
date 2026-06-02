@@ -2,6 +2,7 @@ import './App.css';
 import './index.css';
 import { useEffect, useState } from 'react';
 import { AboutPage } from './components/AboutPage/AboutPage';
+import { AtlasPage } from './components/ProjectPages/AtlasPage';
 import { NavBar } from './components/NavBar/NavBar';
 import { Hero } from './components/Hero/Hero';
 import { SkillsCarousel } from './components/SkillsCarousel/SkillsCarousel';
@@ -10,7 +11,9 @@ import { ContactSection } from './components/ContactSection/ContactSection';
 
 function App() {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
-  const isAboutPage = window.location.pathname === '/about';
+  const pathname = window.location.pathname;
+  const isAboutPage = pathname === '/about';
+  const isAtlasPage = pathname === '/projects/atlas';
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -57,6 +60,17 @@ function App() {
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, [showCustomCursor]);
+
+  if (isAtlasPage) {
+    return (
+      <>
+        {showCustomCursor && <div id="custom-cursor"></div>}
+        <NavBar />
+        <AtlasPage />
+        <ContactSection />
+      </>
+    );
+  }
 
   if (isAboutPage) {
     return (

@@ -1,7 +1,6 @@
 import styles from './ProjectsSection.module.css';
-import React, { useState } from 'react';
+import React from 'react';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
-import { AtlasModal } from '../ProjectModals/AtlasModal';
 
 type ProjectImage = {
   src: string;
@@ -59,7 +58,9 @@ const projectsData: ProjectData[] = [
 ];
 
 export function ProjectsSection() {
-  const [isAtlasModalOpen, setIsAtlasModalOpen] = useState(false);
+  const handleAtlasClick = () => {
+    window.location.pathname = '/projects/atlas';
+  };
 
   return (
     <section id="projects" className={styles.section} aria-labelledby="projects-title">
@@ -104,7 +105,7 @@ export function ProjectsSection() {
                 {project.id === 1 && (
                   <button 
                     className={styles.cardButton}
-                    onClick={() => setIsAtlasModalOpen(true)}
+                    onClick={handleAtlasClick}
                     aria-label={`Ouvrir les détails du projet ${project.title}`}
                   >
                     Voir plus
@@ -115,13 +116,6 @@ export function ProjectsSection() {
           ))}
         </div>
       </div>
-
-      {isAtlasModalOpen && (
-        <AtlasModal 
-          project={projectsData[0]} 
-          onClose={() => setIsAtlasModalOpen(false)} 
-        />
-      )}
     </section>
   );
 }
