@@ -28,11 +28,6 @@ export function AboutPage() {
               Data Scientist
             </h2>
           </div>
-
-          <p className={styles.description}>
-            Disponible pour une opportunité à temps plein dès octobre 2026.
-          </p>
-
           <div className={styles.socials}>
             <a href="https://github.com/AnthonyDh10" aria-label="Profil GitHub" className={styles.socialLink}>
               <FaGithub size={32} />

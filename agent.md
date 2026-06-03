@@ -60,7 +60,6 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
 ## UI / UX & Accessibilité
 - Thème : "Rétro / Pixel Art" — inspiré Nintendo DS/3DS (Pokémon ORAS). Bordures épaisses, ombres solides décalées, angles droits, interactions mécaniques.
 - Utiliser des balises HTML5 sémantiques : `<main>`, `<section>`, `<article>`, `<nav>`.
-- Mobile‑first : construire en priorité pour mobile, puis ajouter breakpoints.
 - Accessibilité :
   - Texte alternatif (`alt`) pour toutes les images.
   - Focus visible et gérable au clavier; éléments interactifs accessibles par Tab.

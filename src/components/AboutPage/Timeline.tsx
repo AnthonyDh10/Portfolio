@@ -22,7 +22,7 @@ const TIMELINE: TimelineItem[] = [
     id: 1,
     type: "main",
     period: "2020 - 2026",
-    title: "ESEO, grande école d'ingénieur",
+    title: "école supérieur d'électronique de l'ouest, Dijon",
     description: "Formation ingénieur généraliste",
     logo: ESEOLogo,
     bgColor: "#FFFFFF"
@@ -38,7 +38,7 @@ const TIMELINE: TimelineItem[] = [
   },
   {
     id: 3,
-    type: "main",
+    type: "branch",
     period: "2024 - 2026",
     title: "Stage technique à l'ICMUB (Institut de Chimie Moléculaire de l'Université de Bourgogne)",
     description: "Optimisation de 40% de la vitesse d'exécution d'une bibliothèque de calcul de homologie persitente en C++.",
@@ -56,52 +56,56 @@ const TIMELINE: TimelineItem[] = [
   },
   {
     id: 5,
-    type: "main",
+    type: "branch",
     period: "SEPTEMBRE 2025 - SEPTEMBRE 2026",
     title: "Contrat de professionnalisation au CGFL",
     description: "Développement d'un atlas de scanners CT pour un parcours de radiothérapie sans simulation.",
     logo: CGFLLogo,
     bgColor: "#FFFFFF"
+  },
+  {
+    id: 6,
+    type: "main",
+    period: "2026",
+    title: "Diplômation et disponibilité",
+    description: "",
+    logo: ESEOLogo,
+    bgColor: "#FFFFFF"
   }
 ];
 
 export function Timeline() {
-  // On stocke désormais un seul ID (ou null) au lieu d'un tableau
   const [activeId, setActiveId] = useState<number | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const CTA_ID = 99;
 
   useEffect(() => {
     const handleScroll = () => {
-      // Calcule le centre exact de la fenêtre
       const viewportCenter = window.innerHeight / 2;
       let closestId: number | null = null;
       let minDistance = Infinity;
 
       itemRefs.current.forEach((el) => {
         if (!el) return;
-        
-        // Récupère la position de l'élément par rapport à l'écran
         const rect = el.getBoundingClientRect();
-        // Calcule le centre de cet élément
         const elCenter = rect.top + rect.height / 2;
-        // Calcule la distance absolue entre le centre de l'élément et le centre de l'écran
         const distance = Math.abs(viewportCenter - elCenter);
 
-        // Si cette distance est la plus petite trouvée jusqu'à présent, on met à jour l'ID
         if (distance < minDistance) {
           minDistance = distance;
           closestId = Number(el.getAttribute('data-id'));
         }
       });
 
-      // React ignorera la mise à jour si l'ID est identique au précédent (évite les re-rendus inutiles)
+      const isAtBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50;
+      if (isAtBottom) {
+        closestId = CTA_ID;
+      }
+
       setActiveId(closestId);
     };
 
-    // Exécuter une fois au montage pour initialiser le premier élément
     handleScroll();
-
-    // Ajouter les écouteurs d'événements (passive: true optimise les performances du scroll)
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll, { passive: true });
 
@@ -111,19 +115,19 @@ export function Timeline() {
     };
   }, []);
 
-  
   const handleMarkerClick = (index: number) => {
     const element = itemRefs.current[index];
     if (element) {
       element.scrollIntoView({
-        behavior: 'smooth', // Défilement fluide
-        block: 'center',    // Aligne l'élément au centre de l'écran
+        behavior: 'smooth',
+        block: 'center',
       });
     }
   };
 
-return (
+  return (
     <div className={styles.timeline}>
+      <Title as="h1" id="timeline-title">Mon parcours</Title>
       {TIMELINE.map((item, index) => {
         const isFirst = index === 0;
         const isLast = index === TIMELINE.length - 1;
@@ -145,24 +149,6 @@ return (
               }}
             />
 
-            {!isMain && (
-              <svg
-                className={styles.branchPath}
-                preserveAspectRatio="none"
-                viewBox="0 0 100 100"
-              >
-                <path
-                  d="M 0 0 C 0 20, 100 20, 100 40 L 100 60 C 100 80, 0 80, 0 100"
-                  fill="none"
-                  stroke="var(--border)"
-                  strokeWidth="2"
-                  vectorEffect="non-scaling-stroke"
-                  className={styles.branchStroke}
-                />
-              </svg>
-            )}
-
-            {/* Événement onClick sur le marqueur */}
             <div 
               className={`${styles.marker} ${isMain ? styles.markerMain : styles.markerBranch}`}
               onClick={() => handleMarkerClick(index)}
@@ -194,6 +180,21 @@ return (
           </div>
         );
       })}
+<div 
+        className={`${styles.finalItem} ${activeId === CTA_ID ? styles.ctaVisible : ''}`}
+        data-id={CTA_ID}
+        ref={(el) => { itemRefs.current[TIMELINE.length] = el; }} 
+      >
+        {/* On applique conditionnellement la classe dashedLineActive ici */}
+        <div className={`${styles.finalDashedLine} ${activeId === CTA_ID ? styles.dashedLineActive : ''}`} />
+        
+        <div className={styles.finalContent}>
+          {/* J'ai réintégré le titre en deux parties pour l'animation de soulignement */}
+          <Title as="h3" className={styles.finalTitle}>
+            <span className={styles.questionSlide}>INGÉNIEUR INFORMATIQUE CHEZ VOUS ?</span>
+          </Title>
+        </div>
+      </div>
     </div>
   );
 }
