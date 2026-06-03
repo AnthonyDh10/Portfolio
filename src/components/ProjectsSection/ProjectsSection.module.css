@@ -171,7 +171,7 @@
   aspect-ratio: 1 / 1;
   transform: rotate(10deg); /* Rotation inverse */
   border: 3px solid var(--text);
-  background-color: var(--accent);
+  background-color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;

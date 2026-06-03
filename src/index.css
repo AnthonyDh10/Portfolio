@@ -1,17 +1,19 @@
 :root {
+  /* Couleurs trouvées sur https://www.radix-ui.com/colors */
+
   /* Couleurs - Mode Sombre */
-  --bg: #020617; /* Bleu nuit presque noir */
-  --surface: #0F172A; /* Un peu plus clair pour les éléments/cartes */
+  --bg: #0E1512; 
+  --surface: #132D21;
 
-  --text: #F8FAFC; /* Blanc cassé pour la lisibilité */
-  --text-secondary: #94A3B8; /* Gris bleuté */
+  --text: #ECEEEC; 
+  --text-secondary: #AFB5AD; 
 
-  --primary: #10B981; /* Vert émeraude lumineux */
-  --accent: #34D399; /* Vert plus clair pour les accents */
-  --border: #1E293B;
+  --primary: #33B074; 
+  --accent: #2F7C57; 
+  --border: #20573E;
   
   /* Lueur subtile pour les ombres en mode sombre */
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow: 0 4px 20px rgba(16, 185, 129, 0.2); 
 
   /* Variables dynamiques pour le curseur (mises à jour par JS) */
   --mouse-x: 50%;
