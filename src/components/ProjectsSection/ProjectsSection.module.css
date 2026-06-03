@@ -4,7 +4,7 @@
 }
 
 .inner {
-  border-top: 1px solid var(--border);
+  border-top: 4px dashed color-mix(in srgb, var(--text) 20%, transparent);
   padding-top: 26px;
 }
 
