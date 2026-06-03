@@ -82,6 +82,17 @@
   transform: scale(1.35) translateY(-15px);
 }
 
+/* 1. État initial du téléphone dans la section Projets */
+.projectPhonePopOut {
+  /* Transition fluide identique à l'effet popOutImage existant */
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center center;
+}
+
+.card:hover .projectPhonePopOut {
+  transform: scale(1.1) translateY(-15px);
+}
+
 /* --- CORPS DE LA CARTE --- */
 .cardBody {
   padding: 0px 16px 16px;

@@ -66,9 +66,9 @@ const projectsData: ProjectData[] = [
   },
   { 
     id: 3, 
-    title: 'Projet 03', 
+    title: 'LaForge', 
     stack: 'Stack a definir',
-    text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
+    text: 'Application mobile de gestion de séances de musculation, avec suivi de progression et recommandations personnalisées.',
     has3DPhone: true,
     phoneStyle: { float: 'right'}
   },
@@ -116,7 +116,6 @@ return (
                   {!project.baseVisual && project.images && project.images.map((img, index) => (
                     <img 
                       key={index} 
-                      // --- Change de source si la carte actuelle est survolée ---
                       src={hoveredCardId === project.id && img.hoverSrc ? img.hoverSrc : img.src} 
                       alt={`Visuel ${index + 1} du ${project.title}`}
                       className={styles.popOutImage} 
@@ -124,7 +123,9 @@ return (
                     />
                   ))}
                   {project.has3DPhone && (
-                    <Phone style={project.phoneStyle} />
+                    <Phone style={project.phoneStyle}
+                    className={styles.projectPhonePopOut}
+                    />
                   )}
                   <p>{project.text}</p>
                 </div>
