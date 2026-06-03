@@ -1,11 +1,13 @@
 import styles from './ProjectsSection.module.css';
 import React from 'react';
+import { useState } from 'react';
 
 // Imports des assets
-import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
 import CT from '../../assets/ct.png';
 import CTMask from '../../assets/ct-mask.png';
 import analysisIcon from '../../assets/analysis-icon.png';
+import pokeballGif from '../../assets/pokéball_shaking.gif';
+import pokeball from '../../assets/pokéball.png';
 
 // Imports des composants
 import { Card } from '../Card/Card';
@@ -15,6 +17,8 @@ import { Title } from '../Title/Title';
 type ProjectImage = {
   src: string;
   style?: React.CSSProperties;
+  hoverSrc?: string;
+
 };
 
 export type ProjectData = {
@@ -47,9 +51,10 @@ const projectsData: ProjectData[] = [
     stack: 'Stack a definir',
     text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
     images: [
-      { 
-        src: ESEOLogo, 
-        style: { float: 'left', width: '90px', marginRight: '16px', marginBottom: '11px' } 
+      {
+        src: pokeball,
+        hoverSrc: pokeballGif, 
+        style: { float: 'left', width: '90px', marginRight: '16px', marginBottom: '11px' }
       }
     ]
   },
@@ -62,11 +67,12 @@ const projectsData: ProjectData[] = [
 ];
 
 export function ProjectsSection() {
+  const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
   const handleAtlasClick = () => {
     window.location.pathname = '/projects/atlas';
   };
 
-  return (
+return (
     <section id="projects" className={styles.section} aria-labelledby="projects-title">
       <div className={styles.inner}>
         <header className={styles.header}>
@@ -80,6 +86,9 @@ export function ProjectsSection() {
               key={project.id}
               aria-label={`Projet ${project.title}`}
               style={{ padding: 0, overflow: 'visible' }}
+              // --- Détection du survol sur la carte entière ---
+              onMouseEnter={() => setHoveredCardId(project.id)}
+              onMouseLeave={() => setHoveredCardId(null)}
             >
               <div className={styles.visualPlaceholder} aria-hidden="true">
                 
@@ -103,7 +112,8 @@ export function ProjectsSection() {
                   {!project.baseVisual && project.images && project.images.map((img, index) => (
                     <img 
                       key={index} 
-                      src={img.src} 
+                      // --- Change de source si la carte actuelle est survolée ---
+                      src={hoveredCardId === project.id && img.hoverSrc ? img.hoverSrc : img.src} 
                       alt={`Visuel ${index + 1} du ${project.title}`}
                       className={styles.popOutImage} 
                       style={img.style}
