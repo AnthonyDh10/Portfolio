@@ -31,7 +31,6 @@
 /* --- CARTES --- */
 .card {
   position: relative;
-  min-height: 240px;
   display: flex;
   flex-direction: column;
 }
@@ -41,7 +40,7 @@
   z-index: 10; 
 }
 
-/* La grande carte (Option A) prend 2 rangées */
+/* La grande carte prend 2 rangées */
 .cardLarge {
   grid-row: span 2;
 }
@@ -50,8 +49,7 @@
 .visualPlaceholder {
   position: relative;
   flex-grow: 1; 
-  min-height: 160px;
-  padding: 16px;
+  padding: 18px 18px 18px 18px;  
   border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   background: var(--bg);
   overflow: visible; 
@@ -86,18 +84,16 @@
 
 /* --- CORPS DE LA CARTE --- */
 .cardBody {
-  padding: 14px 16px 16px;
+  padding: 0px 16px 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  /* Pousse le texte vers le bas si la carte est très haute */
-  justify-content: flex-end; 
 }
 
 .cardTitle {
   margin: 0;
   color: var(--text);
   font-size: 1rem;
+  margin-top: 8px;
 }
 
 .cardStack {

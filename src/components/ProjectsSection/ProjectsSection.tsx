@@ -32,29 +32,32 @@ export type ProjectData = {
   baseVisual?: string;
   overlayVisual?: string;
   iconVisual?: string;
+  link?: string; 
 };
 
 const projectsData: ProjectData[] = [
   { 
     id: 1, 
-    title: 'Développement d\'un atlas de scanners pour l\'optimisation du parcours de radiothérapie.', 
+    title: 'Développement d\'un atlas de CT', 
     stack: 'Python, Imagerie médicale, Analyse de données', 
     isLarge: true,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+    text: 'Pipeline de traitement d\'images : pré-traitements scanners CT, segmentation, resampling, extraction de caractéristiques, harmonisation ComBat, analyse de données et clustering.',
     baseVisual: CT,
     overlayVisual: CTMask,
-    iconVisual: analysisIcon
+    iconVisual: analysisIcon,
+    link: '/projects/atlas',
   },
   { 
     id: 2, 
-    title: 'Projet 02', 
-    stack: 'Stack a definir',
-    text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+    title: 'PokéMini Games', 
+    stack: 'React, .NET 8, API REST, Vercel, Render',
+    text: 'Plateforme de mini-jeux basée sur les données de PokéAPI et structurée en architecture N-tiers. Interface rétro et intégration d\'un pipeline CI/CD sur Vercel (Front-end) et Render (Back-end).',
+    link : 'https://poke-minigames.vercel.app/',
     images: [
       {
         src: pokeball,
         hoverSrc: pokeballGif, 
-        style: { float: 'left', width: '90px', marginRight: '16px', marginBottom: '11px' }
+        style: { float: 'left', width: '144px', marginRight: '16px', marginBottom: '0px' }
       }
     ]
   },
@@ -68,10 +71,6 @@ const projectsData: ProjectData[] = [
 
 export function ProjectsSection() {
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
-  const handleAtlasClick = () => {
-    window.location.pathname = '/projects/atlas';
-  };
-
 return (
     <section id="projects" className={styles.section} aria-labelledby="projects-title">
       <div className={styles.inner}>
@@ -125,17 +124,19 @@ return (
               </div>
 
               <div className={styles.cardBody}>
-                <h4 className={styles.cardTitle}>{project.title}</h4>
+                <Title as="h4" className={styles.cardTitle}>
+                  {project.title}
+                </Title>                
                 <p className={styles.cardStack}>{project.stack}</p>
-                {project.id === 1 && (
+                {project.link && (
                   <Button 
-                    onClick={handleAtlasClick}
+                    href={project.link}
                     aria-label={`Ouvrir les détails du projet ${project.title}`}
                     className={styles.cardButton}
                   >
                     Voir plus
                   </Button>
-                )}
+                )}    
               </div>
             </Card>
           ))}
