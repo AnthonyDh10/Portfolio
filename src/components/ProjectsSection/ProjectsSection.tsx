@@ -13,6 +13,7 @@ import pokeball from '../../assets/pokéball.png';
 import { Card } from '../Card/Card';
 import { Button } from '../Button/Button';
 import { Title } from '../Title/Title';
+import { Phone } from './Phone';
 
 type ProjectImage = {
   src: string;
@@ -33,6 +34,8 @@ export type ProjectData = {
   overlayVisual?: string;
   iconVisual?: string;
   link?: string; 
+  has3DPhone?: boolean;
+  phoneStyle?: React.CSSProperties;
 };
 
 const projectsData: ProjectData[] = [
@@ -66,6 +69,8 @@ const projectsData: ProjectData[] = [
     title: 'Projet 03', 
     stack: 'Stack a definir',
     text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
+    has3DPhone: true,
+    phoneStyle: { float: 'right'}
   },
 ];
 
@@ -118,6 +123,9 @@ return (
                       style={img.style}
                     />
                   ))}
+                  {project.has3DPhone && (
+                    <Phone style={project.phoneStyle} />
+                  )}
                   <p>{project.text}</p>
                 </div>
 
