@@ -4,6 +4,7 @@
   left: 0;
   right: 0;
   z-index: 80;
+  pointer-events: none;
 }
 
 .navShell {
@@ -21,6 +22,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  pointer-events: none;
+}
+
+.navbarContent > * {
+  pointer-events: auto;
 }
 
 .leftGroup {
@@ -88,6 +94,7 @@
   justify-content: space-between;
   align-items: flex-start;
   box-sizing: border-box;
+  pointer-events: auto;
 }
 
 .menuPanelInner {
@@ -172,6 +179,7 @@
 @media (max-width: 1024px) {
   .navbarWrapper {
     top: 12px;
+    pointer-events: none;
   }
 
   .navShell {
@@ -180,6 +188,7 @@
   
   .navbarContent {
     padding: 8px 0;
+    pointer-events: auto;
   }
 
   .logo {
@@ -195,6 +204,7 @@
   .menuPanel {
     border-width: 4px;
     padding-top: 96px;
+    pointer-events: auto;
   }
 
   .menuLink {
