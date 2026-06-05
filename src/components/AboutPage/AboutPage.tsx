@@ -3,6 +3,7 @@ import { Timeline } from "./Timeline";
 import styles from './AboutPage.module.css';
 import { Title } from '../Title/Title';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
+import moi from '../../assets/moi.png';
 
 export function AboutPage() {
   return (
@@ -11,7 +12,7 @@ export function AboutPage() {
         <aside className={styles.sidebar}>
           <div className={styles.portraitFrame}>
             <img 
-              src={ESEOLogo} 
+              src={moi} 
               alt="Portrait d'Anthony Dinh" 
               loading="lazy"
               className={styles.portraitImage}

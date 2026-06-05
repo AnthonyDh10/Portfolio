@@ -19,7 +19,6 @@ type ProjectImage = {
   src: string;
   style?: React.CSSProperties;
   hoverSrc?: string;
-
 };
 
 export type ProjectData = {
@@ -67,16 +66,18 @@ const projectsData: ProjectData[] = [
   { 
     id: 3, 
     title: 'LaForge', 
-    stack: 'Stack a definir',
+    stack: 'Flask, SQLite',
     text: 'Application mobile de gestion de séances de musculation, avec suivi de progression et recommandations personnalisées.',
     has3DPhone: true,
-    phoneStyle: { float: 'right'}
+    phoneStyle: { float: 'right', marginLeft: '16px', marginBottom: '-6px' },
+    link : 'https://poke-minigames.vercel.app/',
   },
 ];
 
 export function ProjectsSection() {
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
-return (
+
+  return (
     <section id="projects" className={styles.section} aria-labelledby="projects-title">
       <div className={styles.inner}>
         <header className={styles.header}>
@@ -90,14 +91,14 @@ return (
               key={project.id}
               aria-label={`Projet ${project.title}`}
               style={{ padding: 0, overflow: 'visible' }}
-              // --- Détection du survol sur la carte entière ---
               onMouseEnter={() => setHoveredCardId(project.id)}
               onMouseLeave={() => setHoveredCardId(null)}
             >
-              <div className={styles.visualPlaceholder} aria-hidden="true">
+              {/* RETRAIT du aria-hidden="true" ici pour l'accessibilité */}
+              <div className={styles.visualPlaceholder}>
                 
                 {project.baseVisual && (
-                  <div className={styles.illustrationContainer}>
+                  <div className={styles.illustrationContainer} aria-hidden="true">
                     <div className={styles.scannerWrapper}>
                       <img src={project.baseVisual} className={styles.scannerBase} alt="Coupe CT brute" />
                       {project.overlayVisual && (
@@ -113,6 +114,7 @@ return (
                 )}
 
                 <div className={styles.visualText}>
+                  {/* Images et Téléphone en float DOIVENT être placés avant le texte dans le DOM */}
                   {!project.baseVisual && project.images && project.images.map((img, index) => (
                     <img 
                       key={index} 
@@ -122,31 +124,35 @@ return (
                       style={img.style}
                     />
                   ))}
+
                   {project.has3DPhone && (
-                    <Phone style={project.phoneStyle}
-                    className={styles.projectPhonePopOut}
+                    <Phone 
+                      style={project.phoneStyle}
+                      className={styles.projectPhonePopOut}
                     />
                   )}
-                  <p>{project.text}</p>
+                  
+                  <Title as="h4" className={styles.cardTitle}>
+                    {project.title}
+                  </Title>                
+                  <p className={styles.cardStack}>{project.stack}</p>
+                  
+                  {/* --- La description est maintenant ICI, dans le même conteneur --- */}
+                  <p className={styles.cardDescription}>{project.text}</p>
+                  
+                  {project.link && (
+                    <Button 
+                      href={project.link}
+                      aria-label={`Ouvrir les détails du projet ${project.title}`}
+                      className={styles.cardButton}
+                    >
+                      Voir plus
+                    </Button>
+                  )}    
                 </div>
 
               </div>
-
-              <div className={styles.cardBody}>
-                <Title as="h4" className={styles.cardTitle}>
-                  {project.title}
-                </Title>                
-                <p className={styles.cardStack}>{project.stack}</p>
-                {project.link && (
-                  <Button 
-                    href={project.link}
-                    aria-label={`Ouvrir les détails du projet ${project.title}`}
-                    className={styles.cardButton}
-                  >
-                    Voir plus
-                  </Button>
-                )}    
-              </div>
+              {/* La div .cardBody a été complètement retirée */}
             </Card>
           ))}
         </div>

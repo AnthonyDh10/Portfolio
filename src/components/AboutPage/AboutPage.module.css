@@ -18,11 +18,11 @@
 }
 
 .portraitFrame {
-  width: 12rem;
+  width: 10.5rem;
   height: 12rem;
   border-radius: 0;
-  overflow: hidden;
-  box-shadow: 4px 4px 0px 0px var(--accent);
+  overflow: hidden;  
+  box-shadow: 4px 4px 0px 0px var(--border);
   border: 3px solid var(--text);
 }
 
@@ -30,11 +30,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: color-mix(in srgb, var(--primary), white);
-}
-
-.portraitFrame:hover .portraitImage {
-  filter: grayscale(0);
+  background: var(--accent);
 }
 
 .role {
