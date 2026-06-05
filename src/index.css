@@ -13,6 +13,8 @@
   --accent: #2F7C57;
   --border: #20573E;
 
+  --white:#FCFDFC;
+
   /* Lueur subtile pour les ombres en mode sombre */
   --shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
 }
@@ -29,6 +31,8 @@
   --accent: #2F7C57;
   --border: #20573E;
 
+
+
   /* Ombres en mode clair - nettes et mécaniques */
   --shadow: 0 4px 20px rgba(10, 124, 63, 0.15);
 } 
@@ -42,6 +46,10 @@
   /* Typographie (inchangée) */
   --font: Inter, system-ui, sans-serif;
   --heading: Inter, system-ui, sans-serif;
+  
+  --white:#FCFDFC;
+  --black: #1D211C;
+
 
   font-family: var(--font);
   font-size: 18px;

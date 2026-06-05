@@ -9,15 +9,20 @@
 }
 
 .header {
-  margin-bottom: 60px;
+  margin-bottom: 24px;
+}
+
+.buttonWrapper {
+  margin-bottom: 24px;
 }
 
 .stack {
-  margin: 0;
+  margin: 16px 0 0;
   color: var(--primary);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .heroImage {
@@ -31,13 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 40%),
-    repeating-linear-gradient(
-      -45deg,
-      color-mix(in srgb, var(--text) 6%, transparent) 0 10px,
-      transparent 10px 20px
-    );
+  background: var(--white);
 }
 
 .heroImage img {
@@ -50,51 +49,70 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 60px;
 }
 
 .textSection {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
 .textSection h2 {
-  margin: 0 0 12px;
-  font-size: 1.5rem;
-  font-weight: 600;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: var(--text);
+  border-bottom: 3px solid var(--text);
+  padding-bottom: 12px;
+  display: inline-block;
+  align-self: flex-start;
 }
 
-.textSection p {
+.contextText {
   margin: 0;
   color: var(--text-secondary);
   line-height: 1.8;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  text-align: justify;
 }
 
-.techList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* --- Grille Technique --- */
+.techGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.techCard {
+  padding: 24px;
+  border: 2px solid var(--text);
+  border-radius: 0;
+  background: var(--surface); 
+  box-shadow: 4px 4px 0px 0px var(--accent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 
-.techList li {
-  padding: 12px 16px;
-  border: 2px solid var(--primary);
-  border-radius: 0;
-  background: color-mix(in srgb, var(--primary) 8%, transparent);
-  color: var(--text);
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
+.techCard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px var(--accent);
 }
 
-.techList li:hover {
-  border-color: var(--primary);
-  background: color-mix(in srgb, var(--primary) 16%, transparent);
+.techCard h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.techCard p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 /* --- MOBILE --- */
@@ -107,24 +125,21 @@
     margin-bottom: 40px;
   }
 
-  .title {
-    font-size: clamp(20px, 5vw, 32px);
-  }
-
   .heroImage {
     height: 300px;
     margin-bottom: 40px;
+    box-shadow: 6px 6px 0px 0px var(--accent);
   }
 
   .content {
-    gap: 40px;
+    gap: 48px;
   }
 
   .textSection h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
-
-  .techList {
+  
+  .techGrid {
     grid-template-columns: 1fr;
   }
 }

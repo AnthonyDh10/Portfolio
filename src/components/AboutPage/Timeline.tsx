@@ -26,7 +26,7 @@ const TIMELINE: TimelineItem[] = [
     title: "école supérieur d'électronique de l'ouest, Dijon",
     description: "Formation ingénieur généraliste",
     logo: ESEOLogo,
-    bgColor: "#FFFFFF"
+    bgColor: "var(--white)"
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const TIMELINE: TimelineItem[] = [
     title: "Semestre international à la Munster Technological University à Cork, Irlande",
     description: "Informatique, Réseaux, Linux",
     logo: MTULogo,
-    bgColor: "#FFFFFF"
+    bgColor: "var(--white)"
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const TIMELINE: TimelineItem[] = [
     title: "Stage technique à l'ICMUB (Institut de Chimie Moléculaire de l'Université de Bourgogne)",
     description: "Optimisation de 40% de la vitesse d'exécution d'une bibliothèque de calcul de homologie persitente en C++.",
     logo: ICMUBLogo,
-    bgColor: "#FFFFFF"
+    bgColor: "var(--white)"
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const TIMELINE: TimelineItem[] = [
     title: "Diplôme universitaire Intelligence Artificielle en Santé",
     description: "Formation sur les applications de l'IA en santé, éthique et réglementation.",
     logo: UBELogo,
-    bgColor: "#FFFFFF"
+    bgColor: "var(--white)"
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ const TIMELINE: TimelineItem[] = [
     title: "Contrat de professionnalisation au CGFL",
     description: "Développement d'un atlas de scanners CT pour un parcours de radiothérapie sans simulation.",
     logo: CGFLLogo,
-    bgColor: "#FFFFFF"
+    bgColor: "var(--white)"
   },
   {
     id: 6,
@@ -71,7 +71,7 @@ const TIMELINE: TimelineItem[] = [
     title: "Diplômation et disponibilité",
     description: "",
     logo: ESEOLogo,
-    bgColor: "#FFFFFF"
+    bgColor: "var(--white)"
   }
 ];
 

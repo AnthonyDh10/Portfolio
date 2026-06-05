@@ -145,7 +145,7 @@
   aspect-ratio: 1 / 0.8; /* Reste un carré parfait */
   transform: rotate(-10deg); /* Casser la grille */
   border: 3px solid var(--text); /* Bordure épaisse rétro */
-  background-color: #000;
+  background-color: var(--black);
   box-shadow: 8px 8px 0px 0px var(--accent);
 
 }

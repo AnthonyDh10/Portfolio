@@ -58,7 +58,7 @@
   height: 8rem;
   border-radius: 0;
   border: 2px solid var(--border);
-  background: #FFFFFF;
+  background: var(--white);
   overflow: hidden;
   z-index: 10;
   display: flex;

@@ -76,7 +76,7 @@ export const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
 - `--border`: bordures légères (usage limité)
 
 Utilisation recommandée :
-- Boutons principaux : `background: var(--primary); color: #fff; border: 3px solid var(--text); box-shadow: 4px 4px 0px 0px var(--text)`.
+- Boutons principaux : `background: var(--primary); color: var(--white); border: 3px solid var(--text); box-shadow: 4px 4px 0px 0px var(--text)`.
 - Cartes : utiliser le composant `<Card>` — `background: var(--bg); border: 3px solid var(--text); box-shadow: 8px 8px 0px 0px var(--accent)`.
 - Aucun `border-radius` arrondi.
 
