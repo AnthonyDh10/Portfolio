@@ -18,6 +18,7 @@ type TimelineItem = {
 };
 
 const TIMELINE: TimelineItem[] = [
+  // ... (Ton tableau TIMELINE reste exactement le même)
   {
     id: 1,
     type: "main",
@@ -77,6 +78,10 @@ const TIMELINE: TimelineItem[] = [
 export function Timeline() {
   const [activeId, setActiveId] = useState<number | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  
+  // Nouvelles références pour la ligne globale
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const progressRef = useRef<HTMLDivElement | null>(null);
   const CTA_ID = 99;
 
   useEffect(() => {
@@ -103,6 +108,14 @@ export function Timeline() {
       }
 
       setActiveId(closestId);
+
+      if (trackRef.current && progressRef.current) {
+        const trackRect = trackRef.current.getBoundingClientRect();
+        const fillAmount = viewportCenter - trackRect.top;
+        const percentage = Math.max(0, Math.min(100, (fillAmount / trackRect.height) * 100));
+        
+        progressRef.current.style.height = `${percentage}%`;
+      }
     };
 
     handleScroll();
@@ -128,72 +141,74 @@ export function Timeline() {
   return (
     <div className={styles.timeline}>
       <Title as="h1" id="timeline-title">Mon parcours</Title>
-      {TIMELINE.map((item, index) => {
-        const isFirst = index === 0;
-        const isLast = index === TIMELINE.length - 1;
-        const isMain = item.type === "main";
-        const isActive = activeId === item.id;
+      
+      {/* Container relatif spécifique pour la liste des événements */}
+      <div className={styles.timelineList}>
+        
+        {/* La nouvelle piste de remplissage */}
+        <div className={styles.lineTrack} ref={trackRef}>
+          <div className={styles.lineFill} ref={progressRef} />
+        </div>
 
-        return (
-          <div 
-            key={item.id} 
-            data-id={item.id}
-            ref={(el) => { itemRefs.current[index] = el; }}
-            className={`${styles.item} ${isMain ? styles.mainItem : styles.branchItem} ${isActive ? styles.active : ''}`}
-          >
-            <div 
-              className={styles.verticalLine}
-              style={{
-                top: isFirst ? '50%' : '0',
-                bottom: isLast ? '50%' : '0'
-              }}
-            />
+        {TIMELINE.map((item, index) => {
+          const isMain = item.type === "main";
+          const isActive = activeId === item.id;
 
+          return (
             <div 
-              className={`${styles.marker} ${isMain ? styles.markerMain : styles.markerBranch}`}
-              onClick={() => handleMarkerClick(index)}
-              role="button"
-              tabIndex={0}
-              aria-label={`Centrer l'événement ${item.title}`}
+              key={item.id} 
+              data-id={item.id}
+              ref={(el) => { itemRefs.current[index] = el; }}
+              className={`${styles.item} ${isMain ? styles.mainItem : styles.branchItem} ${isActive ? styles.active : ''}`}
             >
-              <img 
-                src={item.logo} 
-                alt={item.title} 
-                style={{ backgroundColor: item.bgColor }}
-                loading="lazy"
-                className={styles.markerImage}
-                onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).src = 'https://via.placeholder.com/150?text=Logo';
-                }}
-              />
-            </div>
+              {/* L'ancienne .verticalLine segmentée a été supprimée d'ici */}
 
-            <div className={`${styles.content} ${isMain ? styles.contentMain : styles.contentBranch}`}>
-               <div className={styles.period}>
-                 {item.period}
-               </div>
-               <Title as="h3">{item.title}</Title>
-               <p className={styles.description}>
-                 {item.description}
-               </p>
+              <div 
+                className={`${styles.marker} ${isMain ? styles.markerMain : styles.markerBranch}`}
+                onClick={() => handleMarkerClick(index)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Centrer l'événement ${item.title}`}
+              >
+                <img 
+                  src={item.logo} 
+                  alt={item.title} 
+                  style={{ backgroundColor: item.bgColor }}
+                  loading="lazy"
+                  className={styles.markerImage}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = 'https://via.placeholder.com/150?text=Logo';
+                  }}
+                />
+              </div>
+
+              <div className={`${styles.content} ${isMain ? styles.contentMain : styles.contentBranch}`}>
+                 <div className={styles.period}>
+                   {item.period}
+                 </div>
+                 <Title as="h3">{item.title}</Title>
+                 <p className={styles.description}>
+                   {item.description}
+                 </p>
+              </div>
             </div>
-          </div>
-        );
-      })}
-<div 
+          );
+        })}
+      </div>
+
+      <div 
         className={`${styles.finalItem} ${activeId === CTA_ID ? styles.ctaVisible : ''}`}
         data-id={CTA_ID}
         ref={(el) => { itemRefs.current[TIMELINE.length] = el; }} 
       >
-        {/* On applique conditionnellement la classe dashedLineActive ici */}
         <div className={`${styles.finalDashedLine} ${activeId === CTA_ID ? styles.dashedLineActive : ''}`} />
-        
         <div className={styles.finalContent}>
-          {/* J'ai réintégré le titre en deux parties pour l'animation de soulignement */}
-          <Title as="h3" className={styles.finalTitle}>
-            <span className={styles.questionSlide}>INGÉNIEUR INFORMATIQUE CHEZ VOUS ?</span>
-          </Title>
-        </div>
+            <Title as="h3" className={styles.finalTitle}>
+              <span className={styles.questionSlide}>
+                INGÉNIEUR INFORMATIQUE CHEZ VOUS ?
+              </span>
+            </Title>
+          </div>
       </div>
     </div>
   );
