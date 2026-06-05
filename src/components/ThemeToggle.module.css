@@ -1,0 +1,66 @@
+/* 1. On définit les couleurs inverses selon le thème actif (Inchangé) */
+:global([data-theme="dark"]) .toggleButton {
+  --btn-bg: #30A46C;
+  --btn-surface: #E6F6EB;
+  --btn-text: #193B2D;
+  --btn-border: #E6F6EB;
+  --btn-accent: #2F7C57;
+}
+
+:global([data-theme="light"]) .toggleButton {
+  --btn-bg: #20573E;
+  --btn-surface: #132D21;
+  --btn-text: #ECEEEC;
+  --btn-border: #132D21;
+  --btn-accent: #33B074;
+}
+
+/* 2. On applique ces variables avec la mécanique globale des boutons */
+.toggleButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  background: var(--btn-surface);
+  /* 3px pour s'aligner sur .button */
+  border: 3px solid var(--btn-border);
+  border-radius: 0;
+  color: var(--btn-text);
+  cursor: pointer;
+  padding: 0; /* Pas de padding car width/height sont fixes */
+
+  /* Ombre identique à .button */
+  box-shadow: 4px 4px 0px 0px var(--btn-accent);
+  
+  /* Transition identique à .button */
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+}
+
+.toggleButton:hover {
+  background: var(--btn-bg);
+}
+
+.toggleButton:active {
+  /* Effet d'enfoncement physique strict comme .button */
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--btn-border);
+}
+
+.toggleButton:focus-visible {
+  /* Accessibilité calquée sur .button */
+  outline: 3px solid var(--btn-accent);
+  outline-offset: 4px;
+}
+
+/* 3. Icône */
+.icon {
+  width: 20px; /* Légèrement réduit pour respirer avec les bordures de 3px */
+  height: 20px;
+  stroke: var(--btn-text);
+  /* stroke-width: 2.5; Optionnel : épaissir l'icône pour correspondre au texte "font-weight: 800" */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

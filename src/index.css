@@ -1,19 +1,39 @@
-:root {
+:root,
+[data-theme="dark"] {
   /* Couleurs trouvées sur https://www.radix-ui.com/colors */
 
   /* Couleurs - Mode Sombre */
-  --bg: #0E1512; 
+  --bg: #0E1512;
   --surface: #132D21;
 
-  --text: #ECEEEC; 
-  --text-secondary: #AFB5AD; 
+  --text: #ECEEEC;
+  --text-secondary: #AFB5AD;
 
-  --primary: #33B074; 
-  --accent: #2F7C57; 
+  --primary: #33B074;
+  --accent: #2F7C57;
   --border: #20573E;
-  
+
   /* Lueur subtile pour les ombres en mode sombre */
-  --shadow: 0 4px 20px rgba(16, 185, 129, 0.2); 
+  --shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+}
+
+[data-theme="light"] {
+  /* Mode Clair - Palette inversée avec esthétique rétro préservée */
+  --bg: #F4FBF6;
+  --surface: #E6F6EB;
+
+  --text: #193B2D;
+  --text-secondary: #218358;
+
+  --primary: #30A46C;
+  --accent: #2B9A66;
+  --border: #193B2D;
+
+  /* Ombres en mode clair - nettes et mécaniques */
+  --shadow: 0 4px 20px rgba(10, 124, 63, 0.15);
+} 
+
+:root {
 
   /* Variables dynamiques pour le curseur (mises à jour par JS) */
   --mouse-x: 50%;
@@ -54,12 +74,20 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none; /* Empêche le halo de bloquer les clics */
+  pointer-events: none;
   z-index: 50;
-  /* Un dégradé radial centré sur les coordonnées de la souris */
+  /* Le gradient s'adapte dynamiquement via les variables CSS */
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(16, 185, 129, 0.2), /* La couleur de la lumière (basée sur --primary) */
+    rgba(16, 185, 129, 0.2),
+    transparent 40%
+  );
+}
+
+[data-theme="light"] body::before {
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(10, 124, 63, 0.08),
     transparent 40%
   );
 }

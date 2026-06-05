@@ -35,6 +35,12 @@
   gap: 16px;
 }
 
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .logo {
   font-size: 32px;
   font-weight: 800;

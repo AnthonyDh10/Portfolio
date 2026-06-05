@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styles from './NavBar.module.css';
 import { Button } from '../Button/Button';
+import { ThemeToggle } from '../ThemeToggle';
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,9 +53,12 @@ export function NavBar() {
             </Button>
           </div>
 
-          <Button href="#contact">
-            Contactez-moi
-          </Button>
+          <div className={styles.rightGroup}>
+            <ThemeToggle />
+            <Button href="#contact">
+              Contactez-moi
+            </Button>
+          </div>
         </div>
 
         <AnimatePresence>
