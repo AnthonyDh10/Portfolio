@@ -2,7 +2,6 @@ import { FaEnvelope, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { Timeline } from "./Timeline"; 
 import styles from './AboutPage.module.css';
 import { Title } from '../Title/Title';
-import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
 import moi from '../../assets/moi.png';
 
 export function AboutPage() {
