@@ -64,3 +64,15 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+@media (max-width: 600px) {
+  .toggleButton {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+} 

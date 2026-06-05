@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import styles from './NavBar.module.css';
 import { Button } from '../Button/Button';
-import { ThemeToggle } from '../ThemeToggle';
+import { ThemeToggle } from './ThemeToggle';
 
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
