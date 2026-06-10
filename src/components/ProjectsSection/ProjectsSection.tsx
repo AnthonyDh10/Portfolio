@@ -54,7 +54,7 @@ const projectsData: ProjectData[] = [
     title: 'PokéMini Games', 
     stack: 'React, .NET 8, API REST, Vercel, Render',
     text: 'Plateforme de mini-jeux basée sur les données de PokéAPI et structurée en architecture N-tiers. Interface rétro et intégration d\'un pipeline CI/CD sur Vercel (Front-end) et Render (Back-end).',
-    link : 'https://poke-minigames.vercel.app/',
+    link : 'https://github.com/AnthonyDh10/PokeGames/tree/main',
     images: [
       {
         src: pokeball,
