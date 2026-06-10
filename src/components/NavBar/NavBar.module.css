@@ -67,6 +67,13 @@
   box-shadow: 4px 4px 0px 0px var(--accent);
 }
 
+.contactButton {
+  background: var(--primary);
+  border-color: var(--text);
+  color: var(--text);
+  box-shadow: 4px 4px 0px 0px var(--text);
+}
+
 .menuButton:hover {
   background: color-mix(in srgb, var(--accent) 80%, var(--text));
   box-shadow: 4px 4px 0px 0px var(--accent);
@@ -191,6 +198,10 @@
   .navShell {
     padding: 0 16px;
   }
+
+  .menuLink {
+    font-size: clamp(28px, 8vw, 32px);
+  }
   
   .navbarContent {
     padding: 8px 0;
@@ -202,25 +213,16 @@
     text-shadow: 2px 2px 0px var(--accent);
   }
 
-  .menuButton {
+  .menuButton,
+  .contactButton {
     font-size: 13px;
-    padding: 6px 10px;
+    padding: 6px 12px;
   }
 
   .menuPanel {
     border-width: 4px;
     padding-top: 96px;
     pointer-events: auto;
-  }
-
-  .menuLink {
-    gap: 12px; 
-    /* Réduction proportionnelle de l'ombre sur mobile */
-    text-shadow: 3px 3px 0px var(--accent);
-  }
-
-  .menuLink:hover {
-    text-shadow: 3px 3px 0px var(--accent);
   }
 
   .arrowIcon {

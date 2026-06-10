@@ -7,10 +7,9 @@ import { ThemeToggle } from './ThemeToggle';
 export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Les commentaires ont été retirés pour plus de clarté
   const links = [
-    { href: '#skills', label: 'Compétences' },
-    { href: '#projects', label: 'Mes projets' },
+    { href: '/#skills', label: 'Compétences' },
+    { href: '/#projects', label: 'Mes projets' },
     { href: '/about', label: 'À propos de moi' },
     { href: '#contact', label: 'Contact' },
   ];
@@ -55,8 +54,10 @@ export function NavBar() {
 
           <div className={styles.rightGroup}>
             <ThemeToggle />
-            <Button href="#contact">
-              Contactez-moi
+            <Button 
+              className={styles.contactButton}
+              href="#contact">
+              Contact
             </Button>
           </div>
         </div>
