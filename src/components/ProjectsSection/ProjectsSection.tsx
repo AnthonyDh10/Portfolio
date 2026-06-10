@@ -67,7 +67,7 @@ const projectsData: ProjectData[] = [
     id: 3, 
     title: 'LaForge', 
     stack: 'Flask, SQLite',
-    text: 'Application mobile personnelle de gestion de séances de musculation, avec suivi de progression et recommandations personnalisées pour la surcharge progressive à partir des données des séances effectuées.',
+    text: 'Application mobile PWA de gestion de séances de musculation, avec suivi de progression et recommandations personnalisées pour la surcharge progressive à partir des données des séances effectuées.',
     has3DPhone: true,
     phoneStyle: { float: 'right', marginLeft: '16px', marginBottom: '-6px' },
   },
