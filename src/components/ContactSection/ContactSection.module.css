@@ -33,7 +33,6 @@
   align-items: start;
 }
 
-/* --- Box Rétro / Pixel Art --- */
 .retroBox {
   gap: 24px;
   overflow: hidden;

@@ -17,21 +17,21 @@ type ContactInfo = {
 const contactInfos: ContactInfo[] = [
   {
     label: 'Téléphone',
-    value: '+33 6 00 00 00 00',
-    href: 'tel:+33600000000',
+    value: '07 67 34 89 29',
+    href: 'tel:+336767348929',
     Icon: FaPhoneAlt,
   },
   {
     label: 'LinkedIn',
     value: 'Anthony Dinh',
-    href: 'https://www.linkedin.com/in/votre-profil',
+    href: 'https://www.linkedin.com/in/anthony-dinh-eseo/',
     Icon: FaLinkedinIn,
   },
   {
-    label: 'Curriculum Vitae',
-    value: 'Consulter au format PDF',
-    href: '/cv.pdf',
-    Icon: FaFileAlt,
+    label: 'Email',
+    value: 'antho.dh@icloud.com',
+    href: 'mailto:antho.dh@icloud.com',
+    Icon: FaEnvelope,
   },
 ];
 
@@ -42,7 +42,7 @@ export function ContactSection() {
     const subject = encodeURIComponent(formData.get('subject') as string);
     const message = encodeURIComponent(formData.get('message') as string);
     
-    window.location.href = `mailto:adinhpsn@gmail.com?subject=${subject}&body=${message}`;
+    window.location.href = `mailto:antho.dh@icloud.com?subject=${subject}&body=${message}`;
   };
 
   return (
@@ -120,8 +120,6 @@ export function ContactSection() {
                   />
                 </div>
 
-                {/* Suppression de styles.retroButton, le composant <Button> gère tout son design. 
-                    Correction de l'apostrophe avec &apos; pour éviter les warnings React. */}
                 <Button type="submit">
                   Préparer l&apos;e-mail
                 </Button>
