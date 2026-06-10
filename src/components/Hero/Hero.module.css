@@ -80,13 +80,34 @@
 .content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: space-between;
   text-align: center;
   max-width: fit-content;
   margin: 0 auto;
   /* Override Card default padding for the larger hero variant */
   padding: 48px 64px;
+  position: relative;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  position: relative;      
+  width: 100%;            
+}
+
+.profileButton {
+  position: absolute;     
+  right: 0;               
 }
 
 .title {
@@ -120,6 +141,7 @@
   max-width: 600px;
   margin: 0;
   font-weight: 500;
+  text-align: center;     
 }
 
 /* --- RESPONSIVE --- */
@@ -142,5 +164,15 @@
   .codeLeft, .codeRight {
     font-size: 12px;
     opacity: 0.4;
+  }
+
+  .actionRow {
+    flex-direction: column; /* Aligne verticalement sur mobile */
+    gap: 16px;
+  }
+
+  .profileButton {
+    position: static;       /* Annule le positionnement absolu sur mobile */
+    align-self: center;     /* Re-centre le bouton sur mobile */
   }
 }

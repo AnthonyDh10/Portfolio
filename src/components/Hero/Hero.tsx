@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'; 
 import styles from './Hero.module.css';
 import { Card } from '../Card/Card';
+import { Button } from '../Button/Button';
 
 export function Hero() {
   const easterEggCode = `{
@@ -54,17 +55,25 @@ void loop() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Card className={styles.content}>
-            <h1 className={styles.title}>
-              Anthony DINH
-            </h1>
+            <div className={styles.textContent}>
+              <h1 className={styles.title}>
+                Anthony DINH
+              </h1>
 
-            <h2 className={styles.subtitle}>
-              Ingénieur Fullstack
-            </h2>
-            
-            <p className={styles.description}>
-              Disponible dès Octobre 2026.
-            </p>
+              <h2 className={styles.subtitle}>
+                Ingénieur Fullstack
+              </h2>
+              
+              <div className={styles.actionRow}>
+                <p className={styles.description}>
+                  Disponible dès Octobre 2026.
+                </p>
+                <Button href="/about" className={styles.profileButton}>
+                  voir mon profil
+                </Button>
+              </div>
+            </div>
+
           </Card>
         </motion.div>
       </div>
