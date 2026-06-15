@@ -1,6 +1,6 @@
 import styles from './AtlasPage.module.css';
 import { useEffect } from 'react';
-import CGFLLogo from '../../assets/CGFL-Logo.svg';
+import CGFLLogo from '../../assets/CGFL-logo.svg';
 import { Button } from '../Button/Button';
 import { Title } from '../Title/Title';
 
