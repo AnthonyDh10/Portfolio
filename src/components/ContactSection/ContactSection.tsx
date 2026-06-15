@@ -1,4 +1,4 @@
-import { FaEnvelope, FaFileAlt, FaLinkedinIn, FaPhoneAlt } from 'react-icons/fa';
+import { FaEnvelope, FaLinkedinIn, FaPhoneAlt } from 'react-icons/fa';
 import React from 'react'; 
 import styles from './ContactSection.module.css';
 import type { IconType } from 'react-icons';
