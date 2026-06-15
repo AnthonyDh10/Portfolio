@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './Timeline.module.css';
 import ESEOLogo from '../../assets/ESEO-logo-couleur-positif.png';
-import MTULogo from '../../assets/MTU-Logo.jpg';
-import CGFLLogo from '../../assets/CGFL-Logo.svg';
-import ICMUBLogo from '../../assets/ICMUB-Logo.jpg';
-import UBELogo from '../../assets/UBE-Logo.png';
+import MTULogo from '../../assets/MTU-logo.jpg';
+import CGFLLogo from '../../assets/CGFL-logo.svg';
+import ICMUBLogo from '../../assets/ICMUB-logo.jpg';
+import UBELogo from '../../assets/UBE-logo.png';
 import { Title } from '../Title/Title';
 
 type TimelineItem = {
