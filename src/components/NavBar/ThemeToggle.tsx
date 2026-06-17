@@ -2,9 +2,7 @@ import styles from './ThemeToggle.module.css';
 import { useTheme } from '../../hooks/useTheme';
 
 export const ThemeToggle = () => {
-  const { theme, toggleTheme, isMounted } = useTheme();
-
-  if (!isMounted) return null;
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <button

@@ -18,7 +18,7 @@ const contactInfos: ContactInfo[] = [
   {
     label: 'Téléphone',
     value: '07 67 34 89 29',
-    href: 'tel:+336767348929',
+    href: 'tel:+33767348929',
     Icon: FaPhoneAlt,
   },
   {
@@ -59,7 +59,7 @@ export function ContactSection() {
           {/* Colonne 1 : Informations & Réseaux */}
           <aside className={styles.infoColumn}>
             <Card className={styles.retroBox}>
-              <Title as="h4" id="contact-title">Mes Coordonnées</Title>
+              <Title as="h4">Mes Coordonnées</Title>
               <div className={styles.infoList}>
                 {contactInfos.map(({ label, value, href, Icon }) => (
                   <a
@@ -92,7 +92,7 @@ export function ContactSection() {
                 <IconContext.Provider value={{ className: styles.formHeaderIcon }}>
                   <FaEnvelope />
                 </IconContext.Provider>
-                <Title as="h4" id="contact-title">Envoyer un message</Title>
+                <Title as="h4">Envoyer un message</Title>
               </div>
               
               <form className={styles.contactForm} onSubmit={handleSubmit}>
