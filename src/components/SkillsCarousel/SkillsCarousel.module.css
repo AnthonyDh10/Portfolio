@@ -23,14 +23,13 @@
 .tabsContainer {
   display: flex;
   gap: 16px;
-  /* Décale légèrement les onglets vers la droite pour le style */
-  padding-left: 16px; 
 }
 
 .tabButton {
+  flex: 1;
   background: var(--surface);
   border: 3px solid var(--text);
-  border-bottom: none; 
+  border-bottom: none;
   padding: 12px 24px;
   font-family: inherit;
   font-size: 0.9rem;
@@ -39,9 +38,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
-  
-  /* Forme d'onglet rétro (angles droits) */
-  box-shadow: 4px 4px 0px 0px var(--accent);
+  box-shadow: 6px 6px 0px 0px var(--accent);
   transform: translateY(4px); /* Repose sur la Card */
   transition: all 0.1s ease;
   z-index: 1;
@@ -55,10 +52,8 @@
 .tabButton.activeTab {
   background: var(--bg);
   color: var(--text);
-  /* L'onglet actif se "lève" et efface l'ombre pour paraître au premier plan */
-  transform: translateY(0);
-  box-shadow: 4px 4px 0px 0px var(--text);
-  padding-bottom: 16px; /* Paraît plus grand */
+  box-shadow: 6px 6px 0px 0px var(--text);
+  padding-bottom: 16px; 
   z-index: 2;
 }
 
@@ -125,11 +120,7 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .tabsContainer {
-    padding-left: 0;
     gap: 4px;
-    /* Sur mobile, on permet aux onglets de défiler s'il y en a trop */
-    overflow-x: auto;
-    padding-bottom: 4px;
   }
 
   .tabButton {

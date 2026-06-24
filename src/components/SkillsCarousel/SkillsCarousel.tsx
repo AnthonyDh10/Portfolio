@@ -1,23 +1,24 @@
 import { useState } from 'react';
 import type { IconType } from 'react-icons';
 import {
-  SiCplusplus,
   SiDocker,
-  SiGithub,
-  SiJavascript,
+  SiFlask,
   SiMongodb,
+  SiNumpy,
+  SiPandas,
+  SiPytorch,
   SiPython,
   SiReact,
+  SiScikitlearn,
   SiTypescript,
   SiDotnet,
-  SiFlutter
 } from 'react-icons/si';
-import { FaDatabase, FaMicrosoft } from 'react-icons/fa';
+import { FaDatabase, FaGitAlt, FaMicrosoft } from 'react-icons/fa';
 import styles from './SkillsCarousel.module.css';
 import { Title } from '../Title/Title';
 import { Card } from '../Card/Card';
 
-type Category = 'Front-End' | 'Back-End' | 'Outils & DevOps';
+type Category = 'Dév Web' | 'Data Science' | 'Outils';
 
 type Skill = {
   name: string;
@@ -26,29 +27,31 @@ type Skill = {
 };
 
 const skills: Skill[] = [
-  // Front-End
-  { name: 'React', category: 'Front-End', Icon: SiReact },
-  { name: 'TypeScript', category: 'Front-End', Icon: SiTypescript },
-  { name: 'JavaScript', category: 'Front-End', Icon: SiJavascript },
-  { name: 'Flutter', category: 'Front-End', Icon: SiFlutter },
-  
-  // Back-End
-  { name: 'Python', category: 'Back-End', Icon: SiPython },
-  { name: '.NET', category: 'Back-End', Icon: SiDotnet },
-  { name: 'C++', category: 'Back-End', Icon: SiCplusplus },
-  { name: 'MongoDB', category: 'Back-End', Icon: SiMongodb },
-  { name: 'SQL', category: 'Back-End', Icon: FaDatabase },
-  
-  // Outils & DevOps
-  { name: 'GitHub', category: 'Outils & DevOps', Icon: SiGithub },
-  { name: 'Docker', category: 'Outils & DevOps', Icon: SiDocker },
-  { name: 'Azure DevOps', category: 'Outils & DevOps', Icon: FaMicrosoft },
+  // Dév Web
+  { name: 'React', category: 'Dév Web', Icon: SiReact },
+  { name: 'TypeScript', category: 'Dév Web', Icon: SiTypescript },
+  { name: 'Flask', category: 'Dév Web', Icon: SiFlask },
+  { name: 'ASP .NET', category: 'Dév Web', Icon: SiDotnet },
+
+  // Data Science
+  { name: 'Python', category: 'Data Science', Icon: SiPython },
+  { name: 'NumPy', category: 'Data Science', Icon: SiNumpy },
+  { name: 'Pandas', category: 'Data Science', Icon: SiPandas },
+  { name: 'Scikit-learn', category: 'Data Science', Icon: SiScikitlearn },
+  { name: 'PyTorch', category: 'Data Science', Icon: SiPytorch },
+
+  // Outils
+  { name: 'Git', category: 'Outils', Icon: FaGitAlt },
+  { name: 'Azure DevOps', category: 'Outils', Icon: FaMicrosoft },
+  { name: 'Docker', category: 'Outils', Icon: SiDocker },
+  { name: 'MongoDB', category: 'Outils', Icon: SiMongodb },
+  { name: 'SQL', category: 'Outils', Icon: FaDatabase },
 ];
 
-const categories: Category[] = ['Front-End', 'Back-End', 'Outils & DevOps'];
+const categories: Category[] = ['Dév Web', 'Data Science', 'Outils'];
 
 export function SkillsCarousel() {
-  const [activeTab, setActiveTab] = useState<Category>('Front-End');
+  const [activeTab, setActiveTab] = useState<Category>('Dév Web');
 
   // Filtre les compétences selon l'onglet actif
   const displayedSkills = skills.filter((skill) => skill.category === activeTab);
