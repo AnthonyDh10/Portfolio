@@ -25,13 +25,37 @@
   text-transform: uppercase;
 }
 
-.heroImage {
-  width: 100%;
-  border-radius: 0;
-  overflow: hidden;
+/* --- SFPM Block --- */
+.sfpmBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   margin-bottom: 60px;
+}
+
+.sfpmTitle {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 3px solid var(--text);
+  padding-bottom: 12px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.sfpmRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.heroImage {
   border: 3px solid var(--text);
-  box-shadow: 8px 8px 0px 0px var(--accent);
+  box-shadow: 6px 6px 0px 0px var(--accent);
+  overflow: hidden;
+  max-width: 360px;
 }
 
 .heroImage img {
@@ -44,6 +68,7 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+  margin-top: -80px;
 }
 
 .textSection {
@@ -109,6 +134,29 @@
   line-height: 1.6;
 }
 
+/* --- Highlight Card --- */
+.highlightCard {
+  padding: 32px;
+  border: 2px solid var(--text);
+  background: var(--surface);
+  box-shadow: 6px 6px 0px 0px var(--primary);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.highlightBadge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 4px 12px;
+  background: var(--primary);
+  color: var(--background);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 /* --- MOBILE --- */
 @media (max-width: 768px) {
   .page {
@@ -119,19 +167,33 @@
     margin-bottom: 40px;
   }
 
-  .heroImage {
+  .sfpmBlock {
     margin-bottom: 40px;
+  }
+
+  .sfpmTitle {
+    font-size: 1.5rem;
+  }
+
+  .sfpmRow {
+    grid-template-columns: 1fr;
+  }
+
+  .heroImage {
+    max-width: 100%;
     box-shadow: 6px 6px 0px 0px var(--accent);
   }
 
   .content {
     gap: 48px;
+    margin-top: 0px;
+
   }
 
   .textSection h2 {
     font-size: 1.5rem;
   }
-  
+
   .techGrid {
     grid-template-columns: 1fr;
   }
