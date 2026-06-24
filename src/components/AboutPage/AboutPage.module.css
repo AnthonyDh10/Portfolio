@@ -1,5 +1,12 @@
 .page {
-  padding: 4rem 0 2rem;
+  position: relative;
+  padding: 9rem 0 2rem;
+}
+
+.returnButtonWrapper {
+  position: absolute;
+  top: 4rem;
+  left: 0;
 }
 
 .layout {
@@ -72,7 +79,11 @@
 
 @media (min-width: 1024px) {
   .page {
-    padding: 8rem 0 4rem;
+    padding: 11rem 0 4rem;
+  }
+
+  .returnButtonWrapper {
+    top: 8rem;
   }
 
   .layout {
@@ -90,4 +101,5 @@
     width: 70%;
     padding-left: 1rem;
   }
+
 }

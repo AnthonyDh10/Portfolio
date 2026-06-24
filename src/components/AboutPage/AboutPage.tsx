@@ -8,7 +8,9 @@ import moi from '../../assets/moi.png';
 export function AboutPage() {
   return (
     <section className={styles.page}>
-      <ReturnButton />
+      <div className={styles.returnButtonWrapper}>
+        <ReturnButton />
+      </div>
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
           <div className={styles.portraitFrame}>
