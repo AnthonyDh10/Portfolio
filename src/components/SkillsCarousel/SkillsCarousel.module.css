@@ -39,7 +39,7 @@
   letter-spacing: 0.05em;
   cursor: pointer;
   box-shadow: 6px 6px 0px 0px var(--accent);
-  transform: translateY(4px); /* Repose sur la Card */
+  transform: translateY(4px); 
   transition: all 0.1s ease;
   z-index: 1;
 }
