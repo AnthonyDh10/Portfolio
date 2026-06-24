@@ -1,7 +1,7 @@
 import styles from './AtlasPage.module.css';
 import { useEffect } from 'react';
-import CGFLLogo from '../../assets/CGFL-logo.svg';
-import { Button } from '../Button/Button';
+import SFPM from '../../assets/SFPM.png';
+import { ReturnButton } from '../ReturnButton/ReturnButton';
 import { Title } from '../Title/Title';
 
 export function AtlasPage() {
@@ -47,14 +47,14 @@ const projectData = {
       <div className={styles.container}>
         <header className={styles.header}>
           <div className={styles.buttonWrapper}>
-            <Button href="/#projects">← Retour aux projets</Button>
+            <ReturnButton />
           </div>
           <Title as="h1">{projectData.title}</Title>
           <p className={styles.stack}>{projectData.stack}</p>
         </header>
 
         <div className={styles.heroImage}>
-          <img src={CGFLLogo} alt="Visuel du projet Atlas CGFL" />
+          <img src={SFPM} alt="Visuel du projet Atlas" />
         </div>
 
         <article className={styles.content}>

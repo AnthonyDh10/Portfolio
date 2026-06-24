@@ -1,12 +1,14 @@
 import { FaEnvelope, FaLinkedinIn, FaGithub } from 'react-icons/fa';
-import { Timeline } from "./Timeline"; 
+import { Timeline } from "./Timeline";
 import styles from './AboutPage.module.css';
 import { Title } from '../Title/Title';
+import { ReturnButton } from '../ReturnButton/ReturnButton';
 import moi from '../../assets/moi.png';
 
 export function AboutPage() {
   return (
     <section className={styles.page}>
+      <ReturnButton />
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
           <div className={styles.portraitFrame}>
