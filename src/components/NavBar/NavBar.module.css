@@ -61,6 +61,7 @@
 
 /* Surcharge du composant <Button> pour le Menu */
 .menuButton {
+  height: 44px;
   background: var(--text);
   border-color: var(--text);
   color: var(--primary);
@@ -68,6 +69,7 @@
 }
 
 .contactButton {
+  height: 44px;
   background: var(--primary);
   border-color: var(--text);
   color: var(--text);
@@ -215,7 +217,8 @@
 
   .menuButton,
   .contactButton {
-    font-size: 13px;
+    height: 36px;
+    font-size: 12px;
     padding: 6px 12px;
   }
 
