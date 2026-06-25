@@ -1,9 +1,10 @@
-import { FaEnvelope, FaLinkedinIn, FaGithub } from 'react-icons/fa';
+import {FaLinkedinIn, FaGithub, FaFilePdf } from 'react-icons/fa';
 import { Timeline } from "./Timeline";
 import { ProfileSummary } from "./ProfileSummary";
 import styles from './AboutPage.module.css';
 import { Title } from '../Title/Title';
 import moi from '../../assets/moi.png';
+import cv from '../../assets/CV.pdf';
 
 export function AboutPage() {
   return (
@@ -36,8 +37,8 @@ export function AboutPage() {
             <a href="https://www.linkedin.com/in/anthony-dinh-eseo/" aria-label="Profil LinkedIn" className={styles.socialLink}>
               <FaLinkedinIn size={32} />
             </a>
-            <a href="mailto:antho.dh@icloud.com" aria-label="Envoyer un email" className={styles.socialLink}>
-              <FaEnvelope size={32} />
+            <a href={cv} target="_blank" rel="noopener noreferrer" aria-label="Voir mon CV" className={styles.socialLink}>
+              <FaFilePdf size={32} />
             </a>
           </div>
         </aside>
