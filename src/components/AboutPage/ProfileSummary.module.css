@@ -1,53 +1,250 @@
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  --g: 1px; /* demi-épaisseur des lignes internes */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  background: var(--bg);
   border: 2px solid var(--border);
   box-shadow: 6px 6px 0px 0px var(--accent);
   max-width: 80%;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   aspect-ratio: 1 / 1;
+  margin-top: -3rem;
+  box-sizing: border-box;
 }
 
-.cell {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.25rem;
-  border-right: 2px solid var(--border);
-  border-bottom: 2px solid var(--border);
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-}
-
-.cell:nth-child(2),
-.cell:nth-child(4) {
-  border-right: none;
-}
-
-.cell:nth-child(3),
-.cell:nth-child(4) {
-  border-bottom: none;
-}
-
-.cellEmpty {
-  background: repeating-linear-gradient(
+/* Motif "vide" : couche statique derrière les cellules. */
+.grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+  background-image: repeating-linear-gradient(
     -45deg,
     transparent,
     transparent 6px,
     var(--border) 6px,
     var(--border) 7px
   );
-  opacity: 0.35;
+  pointer-events: none;
 }
 
-.label {
-  font-family: monospace;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--primary);
+/* Lignes internes (croix) : au-dessus du motif, sous les cellules. */
+.grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--border), var(--border)),
+    linear-gradient(var(--border), var(--border));
+  background-size: 2px 100%, 100% 2px;
+  background-position: center, center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.cell {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--bg);
+  cursor: pointer;
+  z-index: 1;
+  transition:
+    top 0.8s var(--ease),
+    left 0.8s var(--ease),
+    width 0.8s var(--ease),
+    height 0.8s var(--ease),
+    background-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+
+/* Positions de base (taquin 2x2) :
+   1 = haut-gauche (Disponibilité), 2 = haut-droite (Domaine),
+   3 = bas-gauche (Passions), 4e quadrant (bas-droite) = motif vide */
+.cell:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: calc(50% - var(--g));
+  height: calc(50% - var(--g));
+}
+
+.cell:nth-child(2) {
+  top: 0;
+  left: calc(50% + var(--g));
+  width: calc(50% - var(--g));
+  height: calc(50% - var(--g));
+}
+
+.cell:nth-child(3) {
+  top: calc(50% + var(--g));
+  left: 0;
+  width: calc(50% - var(--g));
+  height: calc(50% - var(--g));
+}
+
+/* Sens de révélation de l'info : à droite pour les cases qui s'étendent
+   horizontalement (1, 3), en dessous pour celle qui s'étend vers le bas (2). */
+.cell:nth-child(1),
+.cell:nth-child(3) {
+  flex-direction: row;
+}
+
+/* Bloc principal (toujours visible) */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1 1 0; /* partage à égalité avec .extra -> deux moitiés 50/50 */
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Bloc d'infos supplémentaires : replié au repos, révélé dans l'espace
+   gagné à l'expansion (flex-basis = largeur en ligne, hauteur en colonne). */
+.extra {
+  flex: 0 0 0%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  box-sizing: border-box;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  transition:
+    flex-basis 0.8s var(--ease),
+    opacity 0.45s var(--ease) 0.2s;
+}
+
+/* Espace de respiration entre les deux moitiés (sans trait visible). */
+.cell:nth-child(1) .extra,
+.cell:nth-child(3) .extra {
+  padding-left: 1.25rem;
+}
+
+.cell:nth-child(2) .extra {
+  padding-top: 1rem;
+}
+
+.extra p {
+  margin: 0;
+}
+
+.extra strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Indice de survol : icône d'expansion qui "respire" au repos. */
+.hint {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+  animation: hintPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.12);
+  }
+}
+
+/* Titres via le composant Title (réduits pour tenir dans la carte). */
+.grid .cellTitle {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-shadow: 2px 2px 0px color-mix(in srgb, var(--primary) 40%, transparent);
+}
+
+/* ---- Expansion + apparence au survol (desktop, pointeur fin) ---- */
+@media (hover: hover) and (min-width: 481px) {
+  .cell:nth-child(1):hover,
+  .cell:nth-child(2):hover,
+  .cell:nth-child(3):hover {
+    background: var(--surface);
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+
+  .cell:nth-child(1):hover {
+    width: 100%;
+    z-index: 3;
+  }
+  .cell:nth-child(1):hover ~ .cell:nth-child(2) {
+    top: calc(50% + var(--g));
+    left: calc(50% + var(--g));
+    z-index: 2;
+  }
+
+  .cell:nth-child(2):hover {
+    top: 0;
+    height: 100%;
+    z-index: 3;
+  }
+
+  .cell:nth-child(3):hover {
+    left: 0;
+    width: 100%;
+    z-index: 3;
+  }
+
+  /* Révélation des infos supplémentaires */
+  .cell:nth-child(1):hover .extra,
+  .cell:nth-child(3):hover .extra {
+    flex-basis: 50%;
+    opacity: 1;
+  }
+  .cell:nth-child(2):hover .extra {
+    flex-basis: 50%;
+    opacity: 1;
+  }
+
+  .cell:hover .hint {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Intro auto-jouée au montage (même rendu que le hover Disponibilité). */
+@media (min-width: 481px) {
+  .intro .cell:nth-child(1) {
+    width: 100%;
+    z-index: 3;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+  .intro .cell:nth-child(1) .extra {
+    flex-basis: 50%;
+    opacity: 1;
+  }
+  .intro .cell:nth-child(1) .hint {
+    animation: none;
+    opacity: 0;
+  }
+  .intro .cell:nth-child(2) {
+    top: calc(50% + var(--g));
+    left: calc(50% + var(--g));
+    z-index: 2;
+  }
 }
 
 .body {
@@ -86,20 +283,57 @@
   line-height: 1.55;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    transition: none;
+  }
+  .hint {
+    animation: none;
+  }
+}
+
 @media (max-width: 480px) {
   .grid {
-    grid-template-columns: 1fr;
+    display: block;
+    aspect-ratio: auto;
+  }
+
+  .grid::before,
+  .grid::after {
+    display: none;
   }
 
   .cell {
-    border-right: none;
-  }
-
-  .cell:nth-child(3) {
+    position: static;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    cursor: default;
+    background: var(--bg);
+    box-shadow: none;
     border-bottom: 2px solid var(--border);
   }
 
-  .cell:nth-child(4) {
+  .cell:nth-child(1),
+  .cell:nth-child(3) {
+    flex-direction: column;
+  }
+
+  .cell:nth-child(3) {
+    border-bottom: none;
+  }
+
+  /* Pas de survol sur mobile : les infos sont affichées en permanence. */
+  .extra {
+    flex-basis: auto;
+    opacity: 1;
+    overflow: visible;
+    padding-left: 0;
+    padding-top: 0;
+    margin-top: 0.75rem;
+  }
+
+  .hint {
     display: none;
   }
 }
