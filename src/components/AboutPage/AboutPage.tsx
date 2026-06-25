@@ -26,7 +26,7 @@ export function AboutPage() {
           <div>
             <Title as="h2">Anthony Dinh</Title>
             <h2 className={styles.role}>
-              Ingénieur Full-Stack <br /> 
+              Développeur Full-Stack <br /> 
               Data Scientist
             </h2>
           </div>
