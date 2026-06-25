@@ -8,9 +8,9 @@ export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
+    { href: '/#about', label: 'À propos de moi' },
     { href: '/#skills', label: 'Compétences' },
     { href: '/#projects', label: 'Mes projets' },
-    { href: '/about', label: 'À propos de moi' },
     { href: '#contact', label: 'Contact' },
   ];
 
@@ -54,9 +54,10 @@ export function NavBar() {
 
           <div className={styles.rightGroup}>
             <ThemeToggle />
-            <Button 
+            <Button
               className={styles.contactButton}
-              href="#contact">
+              href="#contact"
+              onClick={() => setIsMenuOpen(false)}>
               Contact
             </Button>
           </div>

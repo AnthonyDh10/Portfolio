@@ -140,7 +140,7 @@ export function Timeline() {
 
   return (
     <div className={styles.timeline}>
-      <Title as="h1" id="timeline-title">Mon parcours</Title>
+      <Title as="h2" id="timeline-title">Mon parcours</Title>
       
       {/* Container relatif spécifique pour la liste des événements */}
       <div className={styles.timelineList}>

@@ -3,15 +3,11 @@ import { Timeline } from "./Timeline";
 import { ProfileSummary } from "./ProfileSummary";
 import styles from './AboutPage.module.css';
 import { Title } from '../Title/Title';
-import { ReturnButton } from '../ReturnButton/ReturnButton';
 import moi from '../../assets/moi.png';
 
 export function AboutPage() {
   return (
-    <section className={styles.page}>
-      <div className={styles.returnButtonWrapper}>
-        <ReturnButton />
-      </div>
+    <section id="about" className={styles.page}>
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
           <div className={styles.portraitFrame}>
@@ -27,7 +23,7 @@ export function AboutPage() {
           </div>
 
           <div>
-            <Title as="h1">Anthony Dinh</Title>
+            <Title as="h2">Anthony Dinh</Title>
             <h2 className={styles.role}>
               Ingénieur Full-Stack <br /> 
               Data Scientist

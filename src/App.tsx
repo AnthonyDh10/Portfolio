@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { AboutPage } from './components/AboutPage/AboutPage';
 import { AtlasPage } from './components/ProjectPages/AtlasPage';
 import { NavBar } from './components/NavBar/NavBar';
-import { Hero } from './components/Hero/Hero';
 import { SkillsCarousel } from './components/SkillsCarousel/SkillsCarousel';
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection';
 import { ContactSection } from './components/ContactSection/ContactSection';
@@ -12,7 +11,6 @@ import { ContactSection } from './components/ContactSection/ContactSection';
 function App() {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
   const pathname = window.location.pathname;
-  const isAboutPage = pathname === '/about';
   const isAtlasPage = pathname === '/projects/atlas';
 
   useEffect(() => {
@@ -72,23 +70,12 @@ function App() {
     );
   }
 
-  if (isAboutPage) {
-    return (
-      <>
-        {showCustomCursor && <div id="custom-cursor"></div>}
-        <NavBar />
-        <AboutPage />
-        <ContactSection />
-      </>
-    );
-  }
-
   return (
     <>
       {showCustomCursor && <div id="custom-cursor"></div>}
       <NavBar />
       <main className="app-container">
-        <Hero />
+        <AboutPage />
         <SkillsCarousel />
         <ProjectsSection />
         <ContactSection />
