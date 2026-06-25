@@ -15,7 +15,6 @@ export function ProfileSummary() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    // Intro auto-jouée réservée au desktop : pas d'effet sur le rendu mobile.
     if (!window.matchMedia('(min-width: 481px)').matches) return;
 
     const expand = setTimeout(() => setIntro(true), 500);
@@ -40,8 +39,7 @@ export function ProfileSummary() {
         </div>
         <div className={styles.extra}>
           <p>
-            Recherche un <strong>stage de fin d'études</strong> (6 mois), puis ouvert à un
-            premier poste. Mobile sur la France, télétravail partiel apprécié.
+            Disponible pour un poste d'ingénieur en développement ou data science. Mobile en France.
           </p>
         </div>
         <span className={styles.hint} aria-hidden="true"><FaExpandAlt /></span>
@@ -52,17 +50,16 @@ export function ProfileSummary() {
           <Title as="h3" className={styles.cellTitle}>Domaine de prédilection</Title>
           <div className={styles.body}>
             <span className={styles.cellIcon}><FaHeartbeat /></span>
-            <strong className={styles.highlight}>La santé</strong>
+            <strong className={styles.highlight}>e-santé</strong>
             <p className={styles.sub}>
-              Transformer les besoins des professionnels du milieu en solutions concrètes.
+              Traduire les problématiques médicales en solutions logicielles concrètes.
             </p>
           </div>
         </div>
         <div className={styles.extra}>
           <p>
-            <strong>E-santé, dispositifs médicaux et suivi patient.</strong> J'aime concevoir
-            des outils data qui simplifient le quotidien des soignants et fiabilisent le suivi
-            des patients.
+            Plusieurs projets et travaux menés aux côtés de professionnels de santé — stage,
+            contrat pro, projet d'école — avec une option e-santé à l'ESEO.
           </p>
         </div>
         <span className={styles.hint} aria-hidden="true"><FaExpandAlt /></span>
@@ -78,15 +75,13 @@ export function ProfileSummary() {
               <FaMountain />
             </div>
             <p className={styles.sub}>
-              Jeux vidéo · Musculation · Randonnée — et je développe mes propres apps de suivi.
+              Jeux vidéo · Musculation · Randonnée
             </p>
           </div>
         </div>
         <div className={styles.extra}>
           <p>
-            <strong>RPG &amp; jeux de stratégie</strong>, <strong>musculation</strong> 4×/semaine
-            et <strong>randonnée</strong> en montagne. Je transforme mes passions en projets :
-            apps de suivi sportif et de nutrition.
+            Je construis des outils pour mes propres pratiques — les meilleurs projets naissent d'un besoin réel.
           </p>
         </div>
         <span className={styles.hint} aria-hidden="true"><FaExpandAlt /></span>

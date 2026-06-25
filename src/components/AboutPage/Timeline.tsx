@@ -40,7 +40,7 @@ const TIMELINE: TimelineItem[] = [
   {
     id: 3,
     type: "branch",
-    period: "2024 - 2026",
+    period: "Juillet - Novembre 2024",
     title: "Stage technique à l'ICMUB (Institut de Chimie Moléculaire de l'Université de Bourgogne)",
     description: "Optimisation de 40% de la vitesse d'exécution d'une bibliothèque de calcul de homologie persitente en C++.",
     logo: ICMUBLogo,
@@ -49,7 +49,7 @@ const TIMELINE: TimelineItem[] = [
   {
     id: 4,
     type: "branch",
-    period: "SEPTEMBRE 2025 - SEPTEMBRE 2026",
+    period: "Septembre 2025 - Septembre 2026",
     title: "Diplôme universitaire Intelligence Artificielle en Santé",
     description: "Formation sur les applications de l'IA en santé, éthique et réglementation.",
     logo: UBELogo,
@@ -58,7 +58,7 @@ const TIMELINE: TimelineItem[] = [
   {
     id: 5,
     type: "branch",
-    period: "SEPTEMBRE 2025 - SEPTEMBRE 2026",
+    period: "Septembre 2025 - Septembre 2026",
     title: "Contrat pro au CGFL",
     description: "Développement d'un atlas de scanners CT pour un parcours de radiothérapie sans simulation.",
     logo: CGFLLogo,
