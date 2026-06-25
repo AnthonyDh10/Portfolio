@@ -1,5 +1,6 @@
 import { FaEnvelope, FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import { Timeline } from "./Timeline";
+import { ProfileSummary } from "./ProfileSummary";
 import styles from './AboutPage.module.css';
 import { Title } from '../Title/Title';
 import { ReturnButton } from '../ReturnButton/ReturnButton';
@@ -46,6 +47,7 @@ export function AboutPage() {
         </aside>
 
         <div className={styles.timelineColumn}>
+          <ProfileSummary />
           <Timeline />
         </div>
       </div>
