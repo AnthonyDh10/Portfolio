@@ -60,7 +60,7 @@ export function SkillsCarousel() {
     <section id="skills" className={styles.section} aria-labelledby="skills-title">
       <div className={styles.inner}>
         <Title as="h3" id="skills-title" className={styles.sectionTitle}>
-          Inventaire de compétences
+          Les outils que j'utilise le plus
         </Title>
 
         <div className={styles.inventoryWrapper}>

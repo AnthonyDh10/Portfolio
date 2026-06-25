@@ -34,12 +34,13 @@ export function ProfileSummary() {
           <div className={styles.body}>
             <span className={styles.cellIcon}><FaCalendarAlt /></span>
             <strong className={styles.highlight}>Octobre 2026</strong>
-            <p className={styles.sub}>Ingénieur ESEO — Développement &amp; Data Science</p>
+            <p className={styles.sub}>Ingénieur Informatique ESEO</p>
           </div>
         </div>
         <div className={styles.extra}>
           <p>
-            Disponible pour un poste d'ingénieur en développement ou data science. Mobile en France.
+            Disponible pour un poste d'ingénieur informatique dans le domaine de la santé. 
+            <br/> Mobile en France.
           </p>
         </div>
         <span className={styles.hint} aria-hidden="true"><FaExpandAlt /></span>
@@ -58,8 +59,9 @@ export function ProfileSummary() {
         </div>
         <div className={styles.extra}>
           <p>
-            Plusieurs projets et travaux menés aux côtés de professionnels de santé — stage,
-            contrat pro, projet d'école — avec une option e-santé à l'ESEO.
+            Option e-santé à ESEO <br/>
+            Plusieurs projets et travaux menés aux côtés de professionnels de santé : stage,
+            contrat pro, projets d'école.
           </p>
         </div>
         <span className={styles.hint} aria-hidden="true"><FaExpandAlt /></span>
@@ -81,7 +83,9 @@ export function ProfileSummary() {
         </div>
         <div className={styles.extra}>
           <p>
-            Je construis des outils pour mes propres pratiques — les meilleurs projets naissent d'un besoin réel.
+            Vous pourrez me retrouver devant un écran, la salle de sport ou en pleine nature. <br/>
+            <br/>
+            Mes projets perso sont souvent liés à mes passions, quoi de mieux que de travailler sur des projets qui nous tiennent à cœur ?
           </p>
         </div>
         <span className={styles.hint} aria-hidden="true"><FaExpandAlt /></span>
