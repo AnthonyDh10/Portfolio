@@ -292,44 +292,56 @@
   }
 }
 
+/* ---- Mobile : une colonne, 3 cartes empilées, aucune animation ---- */
 @media (max-width: 480px) {
   .grid {
-    display: block;
+    /* On sort du système taquin (absolu) : simple pile verticale. */
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: static;
     aspect-ratio: auto;
+    max-width: 100%;
+    margin-top: 0;
+    padding: 0.75rem;
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 
+  /* Motif et lignes internes : inutiles hors du taquin. */
   .grid::before,
   .grid::after {
     display: none;
   }
 
-  .cell {
+  .cell,
+  .cell:nth-child(1),
+  .cell:nth-child(2),
+  .cell:nth-child(3) {
     position: static;
     width: auto;
     height: auto;
     flex-direction: column;
     cursor: default;
-    background: var(--bg);
-    box-shadow: none;
-    border-bottom: 2px solid var(--border);
-  }
-
-  .cell:nth-child(1),
-  .cell:nth-child(3) {
-    flex-direction: column;
-  }
-
-  .cell:nth-child(3) {
-    border-bottom: none;
-  }
-
-  /* Pas de survol sur mobile : les infos sont affichées en permanence. */
-  .extra {
-    flex-basis: auto;
-    opacity: 1;
     overflow: visible;
-    padding-left: 0;
-    padding-top: 0;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+    box-shadow: 4px 4px 0 0 var(--accent);
+  }
+
+  /* Tout le contenu est visible d'emblée : pas d'expansion au survol. */
+  .main,
+  .body,
+  .extra {
+    flex: 0 0 auto;
+    overflow: visible;
+    min-height: 0;
+  }
+
+  .extra {
+    opacity: 1;
+    padding: 0;
     margin-top: 0.75rem;
   }
 

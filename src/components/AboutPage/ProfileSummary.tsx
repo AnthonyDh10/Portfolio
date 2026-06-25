@@ -15,6 +15,8 @@ export function ProfileSummary() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Intro auto-jouée réservée au desktop : pas d'effet sur le rendu mobile.
+    if (!window.matchMedia('(min-width: 481px)').matches) return;
 
     const expand = setTimeout(() => setIntro(true), 500);
     const collapse = setTimeout(() => setIntro(false), 2400);

@@ -59,7 +59,7 @@ const TIMELINE: TimelineItem[] = [
     id: 5,
     type: "branch",
     period: "SEPTEMBRE 2025 - SEPTEMBRE 2026",
-    title: "Contrat de professionnalisation au CGFL",
+    title: "Contrat pro au CGFL",
     description: "Développement d'un atlas de scanners CT pour un parcours de radiothérapie sans simulation.",
     logo: CGFLLogo,
     bgColor: "var(--white)"
